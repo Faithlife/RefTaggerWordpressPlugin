@@ -4,7 +4,7 @@ Plugin Name: RefTagger
 Plugin URI: http://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
 Author: Logos Bible Software
-Version: 1.7
+Version: 2.0
 Author URI: http://www.logos.com/
 */
 
@@ -26,33 +26,57 @@ function lbsFooter($unused)
 	
 	// Generate the script code to be printed on the page
 	?>
-<script src="http://bible.logos.com/jsapi/Referencetagging.js" type="text/javascript"></script>
-<script type="text/javascript">
-			Logos.ReferenceTagging.lbsBibleVersion = "<?php echo $bible_version;?>";
-			Logos.ReferenceTagging.lbsLibronixBibleVersion = "<?php echo $libronix_bible_version;?>";
-			<?php if($libronix == 1) echo 'Logos.ReferenceTagging.lbsAddLibronixDLSLink = true;';?>
-			<?php if($existing_libronix == 1) echo 'Logos.ReferenceTagging.lbsAppendIconToLibLinks = true;';?>
-			Logos.ReferenceTagging.lbsLibronixLinkIcon = "<?php echo $link_color;?>";
-			<?php if($search_comments != 1) echo 'Logos.ReferenceTagging.lbsNoSearchClassNames = [ "commentlist" ];';?>
-			<?php if($tooltips != 1) echo 'Logos.ReferenceTagging.lbsUseTooltip = false;';?>
-			Logos.ReferenceTagging.lbsNoSearchTagNames = [ <?php foreach($nosearch as $tagname => $value)
-			{
-				if($value == '1')
+<script>
+	var refTagger = {
+		settings: {
+			bibleVersion: "<?php echo $bible_version;?>",
+			libronixBibleVersion: "<?php echo $libronix_bible_version;?>",
+			addLibronixDLSLink: <?php echo ($libronix ? 'true' : 'false');?>,
+			appendIconToLibLinks: <?php echo ($existing_libronix ? 'true' : 'false');?>,
+			libronixLinkIcon: <?php echo $link_color;?>,
+			noSearchClassNames: <?php echo ($search_comments ? '[]' : '[ "commentList" ]');?>,
+			useTooltip: <?php echo ($tooltips ? 'true' : 'false');?>
+			noSearchTagNames: [
+				<?php foreach($nosearch as $tagname => $value)
 				{
-					if($first)
-						$first = false;
-					else
-						echo ', ';
-						
-					echo '"'.$tagname.'"';
-				}
-			}?> ];
-			<?php if($new_window == 1) echo 'Logos.ReferenceTagging.lbsLinksOpenNewWindow = true;';?>
-			<?php if($css_override == 1) echo 'Logos.ReferenceTagging.lbsCssOverride = true;';?>
-			<?php if($convert_hyperlinks == 1) echo 'Logos.ReferenceTagging.lbsConvertHyperlinks = true;';?>
-			<?php if($case_insensitive == 1) echo 'Logos.ReferenceTagging.lbsCaseInsensitive = true;';?>
-			Logos.ReferenceTagging.tag();
-		</script>
+					if($value == '1')
+					{
+						if($first)
+							$first = false;
+						else
+							echo ', ';
+							
+						echo '"'.$tagname.'"';
+					}
+				}?>
+			],
+			noSearchTagNames: [
+				<?php foreach($nosearch as $tagname => $value)
+				{
+					if($value == '1')
+					{
+						if($first)
+							$first = false;
+						else
+							echo ', ';
+							
+						echo '"'.$tagname.'"';
+					}
+				}?>
+			],
+			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
+			cssOverride: <?php echo ($css_override ? 'true' : 'false');?>,
+			convertHyperlinks: <?php echo ($convert_hyperlinks ? 'true' : 'false');?>,
+			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?>
+		}
+	};
+
+	(function(d, t) {
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.src = '//api.reftagger.com/v2/reftagger.js';
+		s.parentNode.insertBefore(g, s);
+	}(document, 'script'));
+</script>
 <?php
 }
 
