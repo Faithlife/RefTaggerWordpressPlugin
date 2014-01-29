@@ -30,13 +30,12 @@ function lbsFooter($unused)
 		settings: {
 			bibleVersion: "<?php echo $bible_version;?>",
 			libronixBibleVersion: "<?php echo $libronix_bible_version;?>",
-			addLibronixDLSLink: <?php echo ($libronix ? 'true' : 'false');?>,
+			addLogosLink: <?php echo ($libronix ? 'true' : 'false');?>,
 			appendIconToLibLinks: <?php echo ($existing_libronix ? 'true' : 'false');?>,
 			libronixLinkIcon: "<?php echo $link_color;?>",
 			noSearchClassNames: <?php echo ($search_comments ? '[]' : '[ "commentList" ]');?>,
 			useTooltip: <?php echo ($tooltips ? 'true' : 'false');?>,
-			noSearchTagNames: [
-				<?php
+			noSearchTagNames: [<?php
 				$first = true;
 				foreach($nosearch as $tagname => $value)
 				{
@@ -49,11 +48,10 @@ function lbsFooter($unused)
 							
 						echo '"'.$tagname.'"';
 					}
-				}?>
-			],
+				}?>],
 			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
 			convertHyperlinks: <?php echo ($convert_hyperlinks ? 'true' : 'false');?>,
-			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?>
+			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?> 
 		}
 	};
 
@@ -393,7 +391,7 @@ function lbs_options_page()
     </tr>
     <tr style="vertical-align:top">
       <th scope="row">Case sensitivity:</th>
-      <td><input name="lbs_case_insensitive" value="1" id="lbs_case_insensitive1" type="checkbox" <?php if ($selected_case_insensitive == '1') { print 'checked="CHECKED"'; } ?>>
+      <td><input name="lbs_case_insensitive" value="1" id="lbs_case_insensitive" type="checkbox" <?php if ($selected_case_insensitive == '1') { print 'checked="CHECKED"'; } ?>>
         <label for="lbs_case_insensitive">Tag Bible references with improper casing (e.g., jn 3:16 or JOHN 3:16).</label>
       </td>
     </tr>
