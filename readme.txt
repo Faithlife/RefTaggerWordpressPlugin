@@ -21,6 +21,7 @@ Customizable preferences include:
 * Option to enable or disable hover tooltips.
 * Option to work on existing Biblia.com and Ref.ly links.
 * Option to work on Bible references that use improper casing (e.g., jn 3:16 or JOHN 3:16).
+* Option to tag chapter references (e.g. Gen 1).
 * Option to prevent searching user comments for references.
 * Option to prevent searching specific HTML tags, such as bold, h1, ordered list, etc. 
 
