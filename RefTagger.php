@@ -21,6 +21,7 @@ function lbsFooter($unused)
 	$libronix_bible_version = get_option('lbs_libronix_bible_version');
 	$convert_hyperlinks = get_option('lbs_convert_hyperlinks');
 	$case_insensitive = get_option('lbs_case_insensitive');
+	$tag_chapters = get_option('lbs_tag_chapters');
 	$first = true;
 	
 	// Generate the script code to be printed on the page
@@ -51,7 +52,8 @@ function lbsFooter($unused)
 				}?>],
 			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
 			convertHyperlinks: <?php echo ($convert_hyperlinks ? 'true' : 'false');?>,
-			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?> 
+			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?>,
+			tagChapters: <?php echo ($tag_chapters ? 'true' : 'false');?> 
 		}
 	};
 
@@ -81,6 +83,7 @@ function lbs_set_options()
 	add_option('lbs_libronix_bible_version', 'ESV', 'Which Bible version to use with Logos Bible Software links');
 	add_option('lbs_convert_hyperlinks', '0', 'Whether or not to add tooltips to existing Biblia.com and Ref.ly links');
 	add_option('lbs_case_insensitive', '0', 'Whether or not to link references with improper casing');
+	add_option('lbs_tag_chapters', '0', 'Whether or not to tag chapter references (e.g. Genesis 1)');
 }
 
 // Remove the user preferences when the plugin is disabled
@@ -97,6 +100,7 @@ function lbs_unset_options()
 	delete_option('lbs_libronix_bible_version');
 	delete_option('lbs_convert_hyperlinks');
 	delete_option('lbs_case_insensitive');
+	delete_option('lbs_tag_chapters');
 }
 
 // The options page
@@ -134,6 +138,7 @@ function lbs_update_options()
 	$old_tooltips = get_option('lbs_tooltips');
 	$old_convert = get_option('lbs_convert_hyperlinks');
 	$old_case = get_option('lbs_case_insensitive');
+	$old_tag_chapters = get_option('lbs_tag_chapters');
 
 	if($_REQUEST['lbs_bible_version'])
 	{
@@ -169,6 +174,12 @@ function lbs_update_options()
 	if($_REQUEST['lbs_existing_libronix'] != $existing_libronix)
 	{
 		update_option('lbs_existing_libronix', $_REQUEST['lbs_existing_libronix']);
+		$changed = true;
+	}
+	
+	if($_REQUEST['lbs_tag_chapters'] != $old_tag_chapters)
+	{
+		update_option('lbs_tag_chapters', $_REQUEST['lbs_tag_chapters']);
 		$changed = true;
 	}
 	
@@ -301,6 +312,7 @@ function lbs_options_page()
 	$selected_lib_version = get_option('lbs_libronix_bible_version');
 	$selected_convert_hyperlinks = get_option('lbs_convert_hyperlinks');
 	$selected_case_insensitive = get_option('lbs_case_insensitive');	
+	$selected_tag_chapters = get_option('lbs_tag_chapters');	
 	?>
 <form method="post">
   <table class="form-table">
@@ -393,6 +405,12 @@ function lbs_options_page()
       <th scope="row">Case sensitivity:</th>
       <td><input name="lbs_case_insensitive" value="1" id="lbs_case_insensitive" type="checkbox" <?php if ($selected_case_insensitive == '1') { print 'checked="CHECKED"'; } ?>>
         <label for="lbs_case_insensitive">Tag Bible references with improper casing (e.g., jn 3:16 or JOHN 3:16).</label>
+      </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <th scope="row">Tag chapters:</th>
+      <td><input name="lbs_tag_chapters" value="1" id="lbs_tag_chapters" type="checkbox" <?php if ($selected_tag_chapters == '1') { print 'checked="CHECKED"'; } ?>>
+        <label for="lbs_tag_chapters">Tag chapter references (e.g. Gen 1).</label>
       </td>
     </tr>
     <tr style="vertical-align:top">
