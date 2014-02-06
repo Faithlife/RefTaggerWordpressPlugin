@@ -4,7 +4,7 @@ Plugin Name: RefTagger
 Plugin URI: http://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
 Author: Logos Bible Software
-Version: 2.0.1
+Version: 2.0.2
 Author URI: http://www.logos.com/
 */
 
@@ -22,6 +22,7 @@ function lbsFooter($unused)
 	$convert_hyperlinks = get_option('lbs_convert_hyperlinks');
 	$case_insensitive = get_option('lbs_case_insensitive');
 	$tag_chapters = get_option('lbs_tag_chapters');
+	$is_spanish = in_array(get_option('lbs_bible_version'), array('RVA', 'LBLA95', 'NBLH', 'RVR60', 'NVI'));
 	$first = true;
 	
 	// Generate the script code to be printed on the page
@@ -59,7 +60,7 @@ function lbsFooter($unused)
 
 	(function(d, t) {
 		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-		g.src = '//api.reftagger.com/v2/reftagger.js';
+		g.src = '//api.reftagger.com/v2/reftagger<?php echo $is_spanish ? '.es' : ''?>.js';
 		s.parentNode.insertBefore(g, s);
 	}(document, 'script'));
 </script>
@@ -312,7 +313,7 @@ function lbs_options_page()
 	$selected_lib_version = get_option('lbs_libronix_bible_version');
 	$selected_convert_hyperlinks = get_option('lbs_convert_hyperlinks');
 	$selected_case_insensitive = get_option('lbs_case_insensitive');	
-	$selected_tag_chapters = get_option('lbs_tag_chapters');	
+	$selected_tag_chapters = get_option('lbs_tag_chapters');
 	?>
 <form method="post">
   <table class="form-table">
@@ -331,7 +332,14 @@ function lbs_options_page()
           <option value="NIRV" <?php if ($selected_version == 'NIRV') { print 'selected="SELECTED"'; } ?>>NIRV</option>
           <option value="TNIV" <?php if ($selected_version == 'TNIV') { print 'selected="SELECTED"'; } ?>>TNIV</option>
 		  <option value="GW" <?php if ($selected_version == 'GW') { print 'selected="SELECTED"'; } ?>>GW</option>
-		  <option value="MESSAGE" <?php if ($selected_version == 'MESSAGE') { print 'selected="SELECTED"'; } ?>>MESSAGE</option>
+		  <option value="MESSAGE" <?php if ($selected_version == 'MESSAGE') { print 'selected="SELECTED"'; } ?>>The Message</option>
+		  <option value="RSVCE" <?php if ($selected_version == 'RSVCE') { print 'selected="SELECTED"'; } ?>>RSVCE</option>
+		  <option value="DOUAYRHEIMS" <?php if ($selected_version == 'DOUAYRHEIMS') { print 'selected="SELECTED"'; } ?>>D-R</option>
+		  <option value="RVR60" <?php if ($selected_version == 'RVR60') { print 'selected="SELECTED"'; } ?>>RVR60</option>
+		  <option value="VNI" <?php if ($selected_version == 'NVI') { print 'selected="SELECTED"'; } ?>>NVI</option>
+		  <option value="LBLA95" <?php if ($selected_version == 'LBLA95') { print 'selected="SELECTED"'; } ?>>LBLA95</option>
+		  <option value="NBLH" <?php if ($selected_version == 'NBLH') { print 'selected="SELECTED"'; } ?>>NBLH</option>
+		  <option value="RVA" <?php if ($selected_version == 'RVA') { print 'selected="SELECTED"'; } ?>>RVA</option>
         </select>
       </td>
     </tr>
