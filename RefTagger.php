@@ -4,7 +4,7 @@ Plugin Name: RefTagger
 Plugin URI: http://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
 Author: Logos Bible Software
-Version: 2.0.2
+Version: 2.0.3
 Author URI: http://www.logos.com/
 */
 
@@ -39,16 +39,19 @@ function lbsFooter($unused)
 			useTooltip: <?php echo ($tooltips ? 'true' : 'false');?>,
 			noSearchTagNames: [<?php
 				$first = true;
-				foreach($nosearch as $tagname => $value)
+				if (is_array($nosearch))
 				{
-					if($value == '1')
+					foreach($nosearch as $tagname => $value)
 					{
-						if($first)
-							$first = false;
-						else
-							echo ', ';
-							
-						echo '"'.$tagname.'"';
+						if($value == '1')
+						{
+							if($first)
+								$first = false;
+							else
+								echo ', ';
+								
+							echo '"'.$tagname.'"';
+						}
 					}
 				}?>],
 			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
