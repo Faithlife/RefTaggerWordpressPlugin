@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 Plugin Name: RefTagger
 Plugin URI: http://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
@@ -24,7 +24,7 @@ function lbsFooter($unused)
 	$tag_chapters = get_option('lbs_tag_chapters');
 	$is_spanish = in_array(get_option('lbs_bible_version'), array('RVA', 'LBLA95', 'NBLH', 'RVR60', 'NVI'));
 	$first = true;
-	
+
 	// Generate the script code to be printed on the page
 	?>
 <script>
@@ -49,7 +49,7 @@ function lbsFooter($unused)
 								$first = false;
 							else
 								echo ', ';
-								
+
 							echo '"'.$tagname.'"';
 						}
 					}
@@ -57,7 +57,7 @@ function lbsFooter($unused)
 			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
 			convertHyperlinks: <?php echo ($convert_hyperlinks ? 'true' : 'false');?>,
 			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?>,
-			tagChapters: <?php echo ($tag_chapters ? 'true' : 'false');?> 
+			tagChapters: <?php echo ($tag_chapters ? 'true' : 'false');?>
 		}
 	};
 
@@ -115,16 +115,16 @@ function lbs_admin_options()
 <div class="wrap">
   <h2>RefTagger Settings</h2>
   <?php
-	
+
 	// If the user clicked submit, update the preferences
 	if($_REQUEST['submit'])
 	{
 		lbs_update_options();
 	}
-	
+
 	// Print the options page
 	lbs_options_page();
-	
+
 	?>
 </div>
 <?php
@@ -149,14 +149,13 @@ function lbs_update_options()
 		update_option('lbs_bible_version', $_REQUEST['lbs_bible_version']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_libronix_bible_version'])
 	{
 		update_option('lbs_libronix_bible_version', $_REQUEST['lbs_libronix_bible_version']);
 		$changed = true;
 	}
-	
-	
+
 	if($_REQUEST['lbs_libronix'] != $old_libronix)
 	{
 		update_option('lbs_libronix', $_REQUEST['lbs_libronix']);
@@ -168,56 +167,56 @@ function lbs_update_options()
 		update_option('lbs_convert_hyperlinks', $_REQUEST['lbs_convert_hyperlinks']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_case_insensitive'] != $old_case)
 	{
 		update_option('lbs_case_insensitive', $_REQUEST['lbs_case_insensitive']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_existing_libronix'] != $existing_libronix)
 	{
 		update_option('lbs_existing_libronix', $_REQUEST['lbs_existing_libronix']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_tag_chapters'] != $old_tag_chapters)
 	{
 		update_option('lbs_tag_chapters', $_REQUEST['lbs_tag_chapters']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_libronix_color'])
 	{
 		update_option('lbs_libronix_color', $_REQUEST['lbs_libronix_color']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_tooltips'] != $old_tooltips)
 	{
 		update_option('lbs_tooltips', $_REQUEST['lbs_tooltips']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_search_comments'] != $old_comments)
 	{
 		update_option('lbs_search_comments', $_REQUEST['lbs_search_comments']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_new_window'])
 	{
 		update_option('lbs_new_window', $_REQUEST['lbs_new_window']);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_h1'] != $nosearch['h1'])
 	{
 		$nosearch['h1'] = $_REQUEST['lbs_nosearch_h1'];
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_h2'] != $nosearch['h2'])
 	{
 		$nosearch['h2'] = $_REQUEST['lbs_nosearch_h2'];
@@ -230,7 +229,7 @@ function lbs_update_options()
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_h4'] != $nosearch['h4'])
 	{
 		$nosearch['h4'] = $_REQUEST['lbs_nosearch_h4'];
@@ -243,14 +242,14 @@ function lbs_update_options()
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_h6'] != $nosearch['h6'])
 	{
 		$nosearch['h6'] = $_REQUEST['lbs_nosearch_h6'];
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_b'] != $nosearch['b'])
 	{
 		$nosearch['b'] = $_REQUEST['lbs_nosearch_b'];
@@ -258,7 +257,7 @@ function lbs_update_options()
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_i'] != $nosearch['i'])
 	{
 		$nosearch['i'] = $_REQUEST['lbs_nosearch_i'];
@@ -272,7 +271,7 @@ function lbs_update_options()
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_ol'] != $nosearch['ol'])
 	{
 		$nosearch['ol'] = $_REQUEST['lbs_nosearch_ol'];
@@ -285,13 +284,13 @@ function lbs_update_options()
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	
+
 	if($_REQUEST['lbs_nosearch_span'] != $nosearch['span'])
 	{
 		$nosearch['span'] = $_REQUEST['lbs_nosearch_span'];
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
-	}	
+	}
 	if($changed)
 	{
 		?>
@@ -315,7 +314,7 @@ function lbs_options_page()
 	$selected_window = get_option('lbs_new_window');
 	$selected_lib_version = get_option('lbs_libronix_bible_version');
 	$selected_convert_hyperlinks = get_option('lbs_convert_hyperlinks');
-	$selected_case_insensitive = get_option('lbs_case_insensitive');	
+	$selected_case_insensitive = get_option('lbs_case_insensitive');
 	$selected_tag_chapters = get_option('lbs_tag_chapters');
 	?>
 <form method="post">
@@ -472,7 +471,7 @@ function lbs_options_page()
           </td>
         </tr>
         </td>
-        
+
       </table>
   </table>
   <p class="submit">
