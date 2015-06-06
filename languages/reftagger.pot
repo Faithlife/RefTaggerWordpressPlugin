@@ -1,0 +1,319 @@
+# Copyright (C) 2015 Logos Bible Software and Brandon Allen
+# This file is distributed under the same license as the RefTagger package.
+# Submit translations to https://community.logos.com/forums/68.aspx
+msgid ""
+msgstr ""
+"Project-Id-Version: RefTagger 2.1.0\n"
+"Report-Msgid-Bugs-To: https://community.logos.com/forums/68.aspx\n"
+"POT-Creation-Date: 2015-06-06 10:00:47+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.2\n"
+
+#: admin.php:39
+msgid "RefTagger Settings"
+msgstr ""
+
+#: admin.php:69
+msgid "Basic Customizations"
+msgstr ""
+
+#: admin.php:74
+msgid "Heading style"
+msgstr ""
+
+#: admin.php:84
+msgid "Body style"
+msgstr ""
+
+#: admin.php:94
+msgid "Bible translation"
+msgstr ""
+
+#: admin.php:104
+msgid "Additional styling"
+msgstr ""
+
+#: admin.php:115
+msgid "Social sharing"
+msgstr ""
+
+#: admin.php:125
+msgid "Online Bible reader"
+msgstr ""
+
+#: admin.php:133
+msgid "Advanced settings"
+msgstr ""
+
+#: admin.php:138
+msgid "Exclude content"
+msgstr ""
+
+#: admin.php:150
+msgid "Logos integration"
+msgstr ""
+
+#: admin.php:161
+msgid "Advanced options"
+msgstr ""
+
+#: admin.php:234
+msgid "Font color:"
+msgstr ""
+
+#: admin.php:237
+msgid "Font family:"
+msgstr ""
+
+#: admin.php:239 admin.php:265
+msgid "(Default)"
+msgstr ""
+
+#: admin.php:241
+msgid "Arial"
+msgstr ""
+
+#: admin.php:244
+msgid "Courier New"
+msgstr ""
+
+#: admin.php:247
+msgid "Georgia"
+msgstr ""
+
+#: admin.php:250
+msgid "Palantino"
+msgstr ""
+
+#: admin.php:253
+msgid "Tahoma"
+msgstr ""
+
+#: admin.php:256
+msgid "Times New Roman"
+msgstr ""
+
+#: admin.php:259
+msgid "Verdana"
+msgstr ""
+
+#: admin.php:263
+msgid "Font size:"
+msgstr ""
+
+#: admin.php:266
+msgid "12px"
+msgstr ""
+
+#: admin.php:267
+msgid "14px"
+msgstr ""
+
+#: admin.php:268
+msgid "16px"
+msgstr ""
+
+#: admin.php:269
+msgid "18px"
+msgstr ""
+
+#: admin.php:272
+msgid "Background color:"
+msgstr ""
+
+#: admin.php:299
+msgid "English Translations"
+msgstr ""
+
+#: admin.php:301
+msgid "Amplified Bible (AMP)"
+msgstr ""
+
+#: admin.php:304
+msgid "American Standard Version (ASV)"
+msgstr ""
+
+#: admin.php:307
+msgid "Darby"
+msgstr ""
+
+#: admin.php:310
+msgid "Douay-Rheims"
+msgstr ""
+
+#: admin.php:313
+msgid "English Standard Version (ESV)"
+msgstr ""
+
+#: admin.php:316
+msgid "God's Word (GW)"
+msgstr ""
+
+#: admin.php:319
+msgid "Holman Christian Standard Bible (HCSB)"
+msgstr ""
+
+#: admin.php:322
+msgid "King James Version (KJV)"
+msgstr ""
+
+#: admin.php:325
+msgid "Lexham English Bible (LEB)"
+msgstr ""
+
+#: admin.php:328
+msgid "Message Bible"
+msgstr ""
+
+#: admin.php:331
+msgid "New American Standard Bible (NASB)"
+msgstr ""
+
+#: admin.php:334
+msgid "New International Reader's Version"
+msgstr ""
+
+#: admin.php:337
+msgid "New International Version (NIV)"
+msgstr ""
+
+#: admin.php:340
+msgid "New King James Version (NKJV)"
+msgstr ""
+
+#: admin.php:343
+msgid "New Living Translation (NLT)"
+msgstr ""
+
+#: admin.php:346
+msgid "The Revised Standard Version, Catholic Edition"
+msgstr ""
+
+#: admin.php:349
+msgid "Young's Literal Translation (YLT)"
+msgstr ""
+
+#: admin.php:352
+msgid "Spanish Translations"
+msgstr ""
+
+#: admin.php:354
+msgid "La Biblia de las Américas (LBLA)"
+msgstr ""
+
+#: admin.php:357
+msgid "Nueva Biblia Latinoamericana de Hoy (NBLH)"
+msgstr ""
+
+#: admin.php:360
+msgid "Nueva Versión Internacional"
+msgstr ""
+
+#: admin.php:363
+msgid "Reina-Valera Actualizada"
+msgstr ""
+
+#: admin.php:366
+msgid "Reina Valera Revisada (1960)"
+msgstr ""
+
+#: admin.php:393
+msgid "Drop shadow"
+msgstr ""
+
+#: admin.php:396
+msgid "Rounded corners"
+msgstr ""
+
+#: admin.php:423
+msgid "Faithlife"
+msgstr ""
+
+#: admin.php:426
+msgid "Facebook"
+msgstr ""
+
+#: admin.php:429
+msgid "Google+"
+msgstr ""
+
+#: admin.php:432
+msgid "Twitter"
+msgstr ""
+
+#: admin.php:458
+msgid "Biblia"
+msgstr ""
+
+#: admin.php:461
+msgid "Faithlife Bible Study"
+msgstr ""
+
+#: admin.php:490
+msgid "Tags to exclude:"
+msgstr ""
+
+#: admin.php:493
+msgid "Classes to exclude:"
+msgstr ""
+
+#: admin.php:497
+msgid "Search comments"
+msgstr ""
+
+#: admin.php:524
+msgid "Add Logos buttons to tooltip"
+msgstr ""
+
+#: admin.php:527
+msgid "Light"
+msgstr ""
+
+#: admin.php:530
+msgid "Dark"
+msgstr ""
+
+#: admin.php:558
+msgid "Show tooltip on hover"
+msgstr ""
+
+#: admin.php:561
+msgid "Open Bible in new window"
+msgstr ""
+
+#: admin.php:564
+msgid "Case sensitivity"
+msgstr ""
+
+#: admin.php:567
+msgid "Enable Reftagger on existing Biblia links"
+msgstr ""
+
+#: admin.php:570
+msgid "Chapter-level tagging"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "RefTagger"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://reftagger.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Transform Bible references into links to the full text of the verse."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Logos Bible Software, Logos, Brandon Allen"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.logos.com/"
+msgstr ""
