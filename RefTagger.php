@@ -1,12 +1,16 @@
 <?php
-/*
-Plugin Name: RefTagger
-Plugin URI: http://www.logos.com/reftagger
-Description: Transform Bible references into links to the full text of the verse.
-Author: Logos Bible Software
-Version: 2.0.3
-Author URI: http://www.logos.com/
-*/
+
+/**
+ * Plugin Name: RefTagger
+ * Plugin URI:  http://reftagger.com
+ * Description: Transform Bible references into links to the full text of the verse.
+ * Author:      Logos Bible Software, Logos, Brandon Allen
+ * Author URI:  http://www.logos.com/
+ * Version:     2.1.0
+ * Text Domain: reftagger
+ * Domain Path: /languages
+ * License:     The MIT License (LICENSE)
+ */
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
