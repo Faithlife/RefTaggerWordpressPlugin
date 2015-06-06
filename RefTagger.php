@@ -8,6 +8,9 @@ Version: 2.0.3
 Author URI: http://www.logos.com/
 */
 
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
+
 function lbsFooter($unused)
 {
 	$bible_version = get_option('lbs_bible_version');
