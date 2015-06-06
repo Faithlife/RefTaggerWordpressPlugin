@@ -849,6 +849,83 @@ function lbs_default_sharing_args() {
 	return array( 'faithlife', 'facebook', 'google', 'twitter' );
 }
 
+/* SUB-ACTIONS ****************************************************************/
+
+/**
+ * The below functions exist solely to create plugin dependency hooks, and exist
+ * mostly to allow a reliable way for plugins to hook into the RefTagger plugin.
+ *
+ * When using the appropriate hook, plugin authors using these hooks can be
+ * confident that any relevant RefTagger code has been loaded, and that they're
+ * code will only be executed when the RefTagger plugin is active.
+ */
+
+/**
+ * Initialize any code after everything has been loaded.
+ *
+ * Runs on the WP 'init' hook, with priority '0'.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @uses do_action()
+ *
+ * @return void
+ */
+function lbs_reftagger_init() {
+	do_action( 'lbs_reftagger_init' );
+}
+
+/**
+ * RefTagger has initialized all it's code.
+ *
+ * Runs on the 'lbs_reftagger_ready' hook, with priority '999'.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @uses do_action()
+ *
+ * @return void
+ */
+function lbs_reftagger_ready() {
+	do_action( 'lbs_reftagger_ready' );
+}
+
+/**
+ * Runs on the WP 'plugins_loaded' hook, with priority '10'.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @uses do_action()
+ *
+ * @return void
+ */
+function lbs_reftagger_loaded() {
+	do_action( 'lbs_reftagger_loaded' );
+}
+
+/**
+ * Register our shortcodes.
+ *
+ * Runs on the 'lbs_reftagger_init' hook, with priority '10'.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @uses do_action()
+ *
+ * @return void
+ */
+function lbs_reftagger_register_shortcodes() {
+	do_action( 'lbs_reftagger_register_shortcodes' );
+}
+
 // Add the options page to the menu
 function lbs_add_menu()
 {
