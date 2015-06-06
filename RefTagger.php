@@ -86,41 +86,72 @@ function lbsFooter($unused)
 <?php
 }
 
-// Register the user preferences when the plugin is enabled
-function lbs_set_options()
-{
-	add_option('lbs_bible_version', 'ESV', 'Which Bible version to use');
-	add_option('lbs_libronix', 'false', 'Insert Logos Bible Software links');
-	add_option('lbs_existing_libronix', 'false', 'Insert Logos icon after existing Logos Bible Software links');
-	add_option('lbs_libronix_color', 'dark', 'Color of Logos link icons');
-	add_option('lbs_tooltips', '1', 'Show a tooltip containing the verse text when the mouse hovers over a reference');
-	add_option('lbs_search_comments', '1', 'Whether or not to search user comments');
-	$default_nosearch = array('h1' => "1",
-							  'h2' => "1",
-							  'h3' => "1");
-	add_option('lbs_nosearch', $default_nosearch, 'List of HTML tags that will not be searched');
-	add_option('lbs_new_window', '0', 'Whether or not to open links in a new window');
-	add_option('lbs_libronix_bible_version', 'ESV', 'Which Bible version to use with Logos Bible Software links');
-	add_option('lbs_convert_hyperlinks', '0', 'Whether or not to add tooltips to existing Biblia.com and Ref.ly links');
-	add_option('lbs_case_insensitive', '0', 'Whether or not to link references with improper casing');
-	add_option('lbs_tag_chapters', '0', 'Whether or not to tag chapter references (e.g. Genesis 1)');
+/* OPTIONS *******************************************************************/
+
+/**
+ * Add our default options on activation.
+ *
+ * @since 1.0.0
+ *
+ * @access public
+ *
+ * @uses add_option()
+ *
+ * @return void
+ */
+function lbs_set_options() {
+	add_option( 'lbs_bible_reader', 'biblia' );
+	add_option( 'lbs_bible_version', 'ESV' );
+	add_option( 'lbs_body_style', array() );
+	add_option( 'lbs_case_insensitive', '1' );
+	add_option( 'lbs_convert_hyperlinks', '0' );
+	add_option( 'lbs_drop_shadow', '1' );
+	add_option( 'lbs_exclude_classes', array() );
+	add_option( 'lbs_exclude_tags', array( 'h1', 'h2', 'h3' ) );
+	add_option( 'lbs_heading_style', array() );
+	add_option( 'lbs_libronix', '0' );
+	add_option( 'lbs_libronix_color', 'light' );
+	add_option( 'lbs_new_window', '1' );
+	add_option( 'lbs_rounded_corners', '0' );
+	add_option( 'lbs_search_comments', '1' );
+	add_option( 'lbs_social_sharing', lbs_default_sharing_args() );
+	add_option( 'lbs_tag_chapters', '0' );
+	add_option( 'lbs_tooltips', '1' );
 }
 
-// Remove the user preferences when the plugin is disabled
-function lbs_unset_options()
-{
-	delete_option('lbs_bible_version');
-	delete_option('lbs_libronix');
-	delete_option('lbs_existing_libronix');
-	delete_option('lbs_libronix_color');
-	delete_option('lbs_tooltips');
-	delete_option('lbs_search_comments');
-	delete_option('lbs_nosearch');
-	delete_option('lbs_new_window');
-	delete_option('lbs_libronix_bible_version');
-	delete_option('lbs_convert_hyperlinks');
-	delete_option('lbs_case_insensitive');
-	delete_option('lbs_tag_chapters');
+/**
+ * Remove our default options on uninstallation.
+ *
+ * @since 1.0.0
+ *
+ * @access public
+ *
+ * @uses delete_option()
+ *
+ * @return void
+ */
+function lbs_unset_options() {
+	delete_option( 'lbs_bible_reader' );
+	delete_option( 'lbs_bible_version' );
+	delete_option( 'lbs_body_style' );
+	delete_option( 'lbs_case_insensitive' );
+	delete_option( 'lbs_convert_hyperlinks' );
+	delete_option( 'lbs_drop_shadow' );
+	delete_option( 'lbs_exclude_classes' );
+	delete_option( 'lbs_exclude_tags' );
+	delete_option( 'lbs_existing_libronix' );
+	delete_option( 'lbs_heading_style' );
+	delete_option( 'lbs_libronix' );
+	delete_option( 'lbs_libronix_bible_version' );
+	delete_option( 'lbs_libronix_color' );
+	delete_option( 'lbs_new_window' );
+	delete_option( 'lbs_nosearch' );
+	delete_option( 'lbs_plugin_version' );
+	delete_option( 'lbs_rounded_corners' );
+	delete_option( 'lbs_search_comments' );
+	delete_option( 'lbs_social_sharing' );
+	delete_option( 'lbs_tag_chapters' );
+	delete_option( 'lbs_tooltips' );
 }
 
 /* SANITIZATION **************************************************************/
