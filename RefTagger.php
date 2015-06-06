@@ -488,6 +488,43 @@ function lbs_default_sharing_args() {
 	return array( 'faithlife', 'facebook', 'google', 'twitter' );
 }
 
+/* SHORTCODES *****************************************************************/
+
+/**
+ * Register our shortcodes.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @return void
+ */
+function lbs_register_shortcodes() {
+	add_shortcode( 'noreftagger', 'lbs_do_noreftagger_shortcode' );
+}
+
+/**
+ * Wraps a verse reference in a <span> tag with the 'no-reftagger' class, to
+ * allow users to turn off tagging for specific references from within the
+ * Posts/Pages editor.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param mixed $attributes
+ * @param mixed $content (default: false)
+ *
+ * @return void
+ */
+function lbs_do_noreftagger_shortcode( $attributes, $content = false ) {
+	if ( empty( $content ) ) {
+		return;
+	}
+
+	return '<span class="no-reftagger">' . $content . '</span>';
+}
+
 /* LOCALIZATION ***************************************************************/
 
 /**
