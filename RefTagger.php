@@ -784,8 +784,9 @@ function lbs_reftagger_register_shortcodes() {
 	do_action( 'lbs_reftagger_register_shortcodes' );
 }
 
-register_activation_hook(__FILE__, 'lbs_set_options');
-register_deactivation_hook(__FILE__, 'lbs_unset_options');
+// Register activation/uninstall hooks. Adds/removes options used by the plugin.
+register_activation_hook( __FILE__, 'lbs_set_options' );
+register_uninstall_hook( __FILE__, 'lbs_unset_options' );
 
 // Run when the footer is generated
 add_action('wp_footer', 'lbsFooter');
