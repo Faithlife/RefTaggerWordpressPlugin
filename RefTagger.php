@@ -484,6 +484,73 @@ function lbs_options_page()
 <?php
 }
 
+/* DEFAULTS ******************************************************************/
+
+/**
+ * Return an array of default Bible versions.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @return array Bible versions
+ */
+function lbs_default_bibles() {
+	return array(
+		// English
+		'AB', 'ASV', 'DAR', 'DOUAYRHEIMS', 'ESV', 'GW', 'HCSB', 'KJV', 'LEB',
+		'MESSAGE', 'NASB', 'NCV', 'NIRV', 'NIV', 'NKJV', 'NLT', 'RSVCE', 'YLT',
+		// Spanish
+		'LBLA95', 'NBLH', 'NVI', 'RVA', 'RVR60',
+	);
+}
+
+/**
+ * Return our default font families.
+ *
+ * If a font is passed, this function attempts to return a corresponding font
+ * family. If no match is found, the full font family array is returned.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $font (default: '')
+ *
+ * @return string|array
+ */
+function lbs_default_font_families( $font = '' ) {
+
+	$families = array(
+		'arial'     => "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+		'courier'   => "'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace",
+		'georgia'   => "Georgia, Times, 'Times New Roman', serif",
+		'palantino' => "Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif",
+		'tahoma'    => 'Tahoma, Verdana, Segoe, sans-serif',
+		'times'     => "TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif",
+		'verdana'   => 'Verdana, Geneva, sans-serif',
+	);
+
+	if ( ! empty( $font ) && ! empty( $families[ $font ] ) ) {
+		return $families[ $font ];
+	} else {
+		return $families;
+	}
+}
+
+/**
+ * Return an array of default sharing options.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @return array Sharing options
+ */
+function lbs_default_sharing_args() {
+	return array( 'faithlife', 'facebook', 'google', 'twitter' );
+}
+
 // Add the options page to the menu
 function lbs_add_menu()
 {
