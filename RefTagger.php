@@ -784,11 +784,23 @@ function lbs_reftagger_register_shortcodes() {
 	do_action( 'lbs_reftagger_register_shortcodes' );
 }
 
+/* ACTIONS ********************************************************************/
+
 // Register activation/uninstall hooks. Adds/removes options used by the plugin.
 register_activation_hook( __FILE__, 'lbs_set_options' );
 register_uninstall_hook( __FILE__, 'lbs_unset_options' );
 
-// Run when the footer is generated
-add_action('wp_footer', 'lbsFooter');
+// RefTagger self-hooks
+add_action( 'init', 'lbs_reftagger_init', 0 );
+add_action( 'lbs_reftagger_init', 'lbs_reftagger_ready', 999 );
+add_action( 'plugins_loaded', 'lbs_reftagger_loaded' );
+add_action( 'lbs_reftagger_init', 'lbs_reftagger_register_shortcodes' );
 
-?>
+// Load translation files
+add_action( 'lbs_reftagger_init', 'lbs_load_textdomain', 0 );
+
+// Register RefTagger shortcodes
+add_action( 'lbs_reftagger_register_shortcodes', 'lbs_register_shortcodes', 0 );
+
+// Add the RefTagger script with the user specified options
+add_action( 'wp_footer', 'lbsFooter' );
