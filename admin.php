@@ -687,7 +687,7 @@ function lbs_add_color_picker() {
  */
 function lbs_upgrade_options() {
 	$current_db_version = (int) get_option( 'lbs_plugin_version' );
-	$db_version         = lbs_db_version();
+	$db_version         = lbs_get_db_version();
 
 	// Everything is up-to-date, so move along
 	if ( $current_db_version === $db_version ) {
