@@ -488,6 +488,54 @@ function lbs_default_sharing_args() {
 	return array( 'faithlife', 'facebook', 'google', 'twitter' );
 }
 
+/* LOCALIZATION ***************************************************************/
+
+/**
+ * Load the translation file for current language. Checks the languages
+ * folder inside the RefTagger plugin first, and then the default WordPress
+ * languages folder.
+ *
+ * Note that custom translation files inside the RefTagger plugin folder
+ * will be removed on RefTagger updates. If you're creating custom
+ * translation files, please use the global language folder.
+ *
+ * Paths checked (in order attempted):
+ * /wp-content/languages/reftagger
+ * /wp-content/reftagger/languages/
+ * /wp-content/languages/plugins/
+ *
+ * Translations should be prefixed with 'reftagger' followed by the locale string
+ * i.e. - reftagger-en_US.po/reftagger-en_US.mo
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @uses get_locale()
+ * @uses apply_filters()
+ * @uses load_textdomain()
+ * @uses plugin_basename()
+ * @uses load_plugin_textdomain()
+ *
+ * @return void
+ */
+function lbs_load_textdomain() {
+
+	// Traditional WordPress plugin locale filter
+	$locale = apply_filters( 'plugin_locale', get_locale(), 'reftagger' );
+	$mofile = sprintf( '%1$s-%2$s.mo', 'reftagger', $locale );
+
+	// Setup paths to current locale file
+	$mofile_global = WP_LANG_DIR . '/reftagger/' . $mofile;
+
+	// Look in global /wp-content/languages/reftagger folder
+	load_textdomain( 'reftagger', $mofile_global );
+
+	// Look in /wp-content/reftagger/languages/
+	// else in global /wp-content/languages/plugins/
+	load_plugin_textdomain( 'reftagger', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
 /* INCLUDES *******************************************************************/
 
 // Only include admin functions when we're on an admin page
