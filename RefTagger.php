@@ -24,65 +24,161 @@ function lbs_get_db_version() {
 	return 11;
 }
 
-function lbsFooter($unused)
-{
-	$bible_version = get_option('lbs_bible_version');
-	$libronix = get_option('lbs_libronix');
-	$existing_libronix = get_option('lbs_existing_libronix');
-	$link_color = get_option('lbs_libronix_color');
-	$tooltips = get_option('lbs_tooltips');
-	$search_comments = get_option('lbs_search_comments');
-	$nosearch = get_option('lbs_nosearch');
-	$new_window = get_option('lbs_new_window');
-	$libronix_bible_version = get_option('lbs_libronix_bible_version');
-	$convert_hyperlinks = get_option('lbs_convert_hyperlinks');
-	$case_insensitive = get_option('lbs_case_insensitive');
-	$tag_chapters = get_option('lbs_tag_chapters');
-	$is_spanish = in_array(get_option('lbs_bible_version'), array('RVA', 'LBLA95', 'NBLH', 'RVR60', 'NVI'));
-	$first = true;
+/**
+ * Output RefTagger JS in wp_footer.
+ *
+ * Here we pull all of our relevant options, then sanitize the output. Then we
+ * use json_encode to give one last sanitization for use inside the script tag.
+ *
+ * @since 1.0.0
+ *
+ * @access public
+ *
+ * @uses get_option()
+ * @uses json_encode()
+ * @uses lbs_sanitize_bible_reader()
+ * @uses lbs_sanitize_bible_version()
+ * @uses lbs_sanitize_style_options()
+ * @uses lbs_sanitize_libronix_color()
+ * @uses wp_parse_args()
+ * @uses lbs_sanitize_exclude_content()
+ * @uses lbs_default_sharing_args()
+ * @uses lbs_sanitize_social_sharing()
+ * @uses lbs_sanitize_exclude_content()
+ * @uses lbs_sanitize_exclude_content()
+ *
+ * @return void
+ */
+function lbsFooter() {
 
-	// Generate the script code to be printed on the page
-	?>
-<script>
-	var refTagger = {
-		settings: {
-			bibleVersion: "<?php echo $bible_version;?>",
-			libronixBibleVersion: "<?php echo $libronix_bible_version;?>",
-			addLogosLink: <?php echo ($libronix ? 'true' : 'false');?>,
-			appendIconToLibLinks: <?php echo ($existing_libronix ? 'true' : 'false');?>,
-			libronixLinkIcon: "<?php echo $link_color;?>",
-			noSearchClassNames: <?php echo ($search_comments ? '[]' : '[ "commentList" ]');?>,
-			useTooltip: <?php echo ($tooltips ? 'true' : 'false');?>,
-			noSearchTagNames: [<?php
-				$first = true;
-				if (is_array($nosearch))
-				{
-					foreach($nosearch as $tagname => $value)
-					{
-						if($value == '1')
-						{
-							if($first)
-								$first = false;
-							else
-								echo ', ';
+	// Add Logos link
+	$add_logos_link = json_encode( (bool) get_option( 'lbs_libronix', false ) );
 
-							echo '"'.$tagname.'"';
-						}
+	// Append icon to lib links
+	$append_icon = json_encode( (bool) get_option( 'lbs_existing_libronix', false ) );
+
+	// Online Bible reader
+	$bible_reader = get_option( 'lbs_bible_reader', 'biblia' );
+	$bible_reader = lbs_sanitize_bible_reader( $bible_reader, 'js' );
+
+	// Bible version
+	$bible_version_raw = get_option( 'lbs_bible_version' );
+	$bible_version     = lbs_sanitize_bible_version( $bible_version_raw, 'js' );
+
+	// Case insensitive
+	$case_insensitive = (bool) get_option( 'lbs_case_insensitive', false );
+	$case_insensitive = json_encode( $case_insensitive );
+
+	// Convert hyperlinks
+	$convert_hyperlinks = (bool) get_option( 'lbs_convert_hyperlinks', false );
+	$convert_hyperlinks = json_encode( $convert_hyperlinks );
+
+	// Custom style (body)
+	$cs_body = get_option( 'lbs_body_style' );
+	$cs_body = lbs_sanitize_style_options( $cs_body, 'js' );
+
+	// Custom style (heading)
+	$cs_heading = get_option( 'lbs_heading_style' );
+	$cs_heading = lbs_sanitize_style_options( $cs_heading, 'js' );
+
+	// Drop shadow
+	$drop_shadow = json_encode( (bool) get_option( 'lbs_drop_shadow', true ) );
+
+	// Links open new window
+	$new_window = json_encode( (bool) get_option( 'lbs_new_window', false ) );
+
+	// Logos link icon
+	$link_color = false;
+	if ( (bool) get_option( 'lbs_libronix', false ) ) {
+		$link_color = lbs_sanitize_libronix_color( get_option( 'lbs_libronix_color' ) );
+	}
+	$link_color = json_encode( $link_color );
+
+	// Build comment search list to append to the exclude classes array
+	$search_comments = (bool) get_option( 'lbs_search_comments', true );
+	$comment_classes = array();
+	if ( ! $search_comments ) {
+		$comment_classes = array( 'commentList', 'commentlist', 'comment-list' );
+	}
+
+	// Add 'no-reftagger' shortcode class
+	$shortcode_classes = array( 'no-reftagger' );
+
+	// Merge hidden classes
+	$hidden_classes = wp_parse_args( $exclude_classes, $shortcode_classes );
+
+	// Exclude CSS classes
+	$exclude_classes = (array) get_option( 'lbs_exclude_classes' );
+	$exclude_classes = wp_parse_args( $exclude_classes, $hidden_classes );
+	$exclude_classes = lbs_sanitize_exclude_content( $exclude_classes, 'js' );
+
+	// Exclude HTML tags
+	$exclude_tags = (array) get_option( 'lbs_exclude_tags', array( 'h1', 'h2', 'h3' ) );
+	$exclude_tags = lbs_sanitize_exclude_content( $exclude_tags, 'js' );
+
+	// Rounded corners
+	$rounded_corners = json_encode( (bool) get_option( 'lbs_rounded_corners', false ) );
+
+	// Social sharing
+	$social_sharing = get_option( 'lbs_social_sharing', lbs_default_sharing_args() );
+	$social_sharing = lbs_sanitize_social_sharing( $social_sharing, 'js' );
+
+	// Tag chapters
+	$tag_chapters = json_encode( (bool) get_option( 'lbs_tag_chapters', false ) );
+
+	// Use tooltip
+	$use_tooltip = json_encode( (bool) get_option( 'lbs_tooltips', true ) );
+
+	// Search for Spanish language references
+	$_bible_version = lbs_sanitize_bible_version( $bible_version_raw );
+	$is_spanish = in_array( $_bible_version, array( 'LBLA95', 'NBLH', 'NVI', 'RVA', 'RVR60', ) );
+	$spanish = $is_spanish ? '.es' : '';
+?>
+
+	<!-- Begin RefTagger -->
+	<script>
+		var refTagger = {
+			settings: {
+				addLogosLink: <?php echo $add_logos_link; ?>,
+				appendIconToLibLinks: <?php echo $append_icon; ?>,
+				bibleReader: <?php echo $bible_reader; ?>,
+				bibleVersion: <?php echo $bible_version; ?>,
+				caseInsensitive: <?php echo $case_insensitive; ?>,
+				convertHyperlinks: <?php echo $convert_hyperlinks; ?>,
+				customStyle: {
+					body: {
+						backgroundColor: <?php echo $cs_body['background_color']; ?>,
+						color: <?php echo $cs_body['font_color']; ?>,
+						fontFamily: <?php echo $cs_body['font_family']['family']; ?>,
+						fontSize: <?php echo $cs_body['font_size']; ?>
+					},
+					heading: {
+						backgroundColor: <?php echo $cs_heading['background_color']; ?>,
+						color: <?php echo $cs_heading['font_color']; ?>,
+						fontFamily: <?php echo $cs_heading['font_family']['family']; ?>,
+						fontSize: <?php echo $cs_heading['font_size']; ?>
 					}
-				}?>],
-			linksOpenNewWindow: <?php echo ($new_window ? 'true' : 'false');?>,
-			convertHyperlinks: <?php echo ($convert_hyperlinks ? 'true' : 'false');?>,
-			caseInsensitive: <?php echo ($case_insensitive ? 'true' : 'false');?>,
-			tagChapters: <?php echo ($tag_chapters ? 'true' : 'false');?>
-		}
-	};
+				},
+				dropShadow: <?php echo $drop_shadow; ?>,
+				linksOpenNewWindow: <?php echo $new_window; ?>,
+				logosLinkIcon: <?php echo $link_color; ?>,
+				noSearchClassNames: <?php echo $exclude_classes; ?>,
+				noSearchTagNames: <?php echo $exclude_tags; ?>,
+				roundedCorners: <?php echo $rounded_corners; ?>,
+				socialSharing: <?php echo $social_sharing; ?>,
+				tagChapters: <?php echo $tag_chapters; ?>,
+				useTooltip: <?php echo $use_tooltip; ?>
+			}
+		};
 
-	(function(d, t) {
-		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-		g.src = '//api.reftagger.com/v2/reftagger<?php echo $is_spanish ? '.es' : ''?>.js';
-		s.parentNode.insertBefore(g, s);
-	}(document, 'script'));
-</script>
+		(function(d, t) {
+			var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+			g.src = '//api.reftagger.com/v2/RefTagger<?php echo $spanish; ?>.js';
+			s.parentNode.insertBefore(g, s);
+		}(document, 'script'));
+	</script>
+	<!-- End RefTagger -->
+
 <?php
 }
 
