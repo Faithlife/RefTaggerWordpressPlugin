@@ -484,6 +484,304 @@ function lbs_options_page()
 <?php
 }
 
+/* SANITIZATION **************************************************************/
+
+/**
+ * Sanitize the bible reader.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $bible (default: 'biblia')
+ * @param string $context (default: '')
+ *
+ * @return string
+ */
+function lbs_sanitize_bible_reader( $bible = 'biblia', $context = '' ) {
+
+	// We only have two options. Default to 'biblia'
+	if ( ! in_array( $bible, array( 'biblia', 'bible.faithlife' ) ) ) {
+		$bible = 'biblia';
+	}
+
+	if ( 'js' === $context ) {
+		$bible = json_encode( $bible );
+	}
+
+	return $bible;
+}
+
+/**
+ * Sanitize the bible version.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $bible
+ * @param string $context
+ * @uses lbs_default_bibles()
+ *
+ * @return string $bible
+ */
+function lbs_sanitize_bible_version( $bible = 'ESV', $context = '' ) {
+
+	$bibles = lbs_default_bibles();
+
+	if ( 'TNIV' === $bible ) {
+		$bible = 'NIV';
+	}
+
+	if ( ! in_array( $bible, $bibles ) ) {
+		$bible = 'ESV';
+	}
+
+	if ( 'js' === $context ) {
+		$bible = json_encode( $bible );
+	}
+
+	return $bible;
+}
+
+/**
+ * Sanitize body/heading style options.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param array $args (default: array())
+ * @param string $context (default: 'db')
+ * @uses wp_parse_args()
+ * @uses lbs_sanitize_css_color()
+ * @uses lbs_sanitize_font_family()
+ * @uses lbs_sanitize_font_size()
+ *
+ * @return array
+ */
+function lbs_sanitize_style_options( $args = array(), $context = 'db' ) {
+
+	$defaults = array(
+		'background_color' => false,
+		'font_color'       => false,
+		'font_family'      => false,
+		'font_size'        => false,
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+
+	foreach ( $r as $key => $value ) {
+		// Sanitize CSS colors
+		if ( in_array( $key, array( 'background_color', 'font_color' ) ) ) {
+			$r[ $key ] = lbs_sanitize_css_color( $value, $context );
+		}
+
+		// Sanitize the font-family
+		if ( 'font_family' === $key ) {
+			$r['font_family'] = lbs_sanitize_font_family( $r['font_family'], $context );
+		}
+
+		// Sanitize the font-size
+		if ( 'font_size' === $key ) {
+			$r['font_size'] = lbs_sanitize_font_size( $r['font_size'], $context );
+		}
+	}
+
+	return $r;
+}
+
+/**
+ * Sanitize CSS colors.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $color (default: '')
+ * @param string $context (default: '')
+ *
+ * @return string $color
+ */
+function lbs_sanitize_css_color( $color = '', $context = '' ) {
+
+	// Lowercase and strip all unnecessary characters
+	$color = preg_replace( '/[^0-9a-f]/', '', strtolower( $color ) );
+
+	if ( 6 !== strlen( $color ) && 3 !== strlen( $color ) ) {
+		$color = false;
+	}
+
+	// Prepare for output
+	if ( in_array( $context, array( 'display', 'js' ) ) ) {
+		if ( ! empty( $color ) ) {
+			$color = '#' . $color;
+		}
+
+		if ( 'js' === $context ) {
+			$color = json_encode( $color );
+		}
+	}
+
+	return $color;
+}
+
+/**
+ * Sanitize the font family.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $font (default: '')
+ * @param string $context (default: '')
+ * @uses lbs_default_font_families()
+ *
+ * @return string $color
+ */
+function lbs_sanitize_font_family( $font = '', $context = '' ) {
+
+	// Make sure we were sent a valid font
+	if ( ! in_array( $font, array( 'arial', 'courier', 'georgia', 'palantino', 'tahoma', 'times', 'verdana' ) ) ) {
+		$font = false;
+	}
+
+	// Return early if we're saving to the db
+	if ( 'db' === $context ) {
+		return $font;
+	}
+
+	$font_family = lbs_default_font_families( $font );
+	if ( empty( $font ) ) {
+		$font_family = false;
+	}
+
+	if ( 'js' === $context ) {
+		$font_family = json_encode( $font_family );
+	}
+
+	return array( 'font' => $font, 'family' => $font_family );
+}
+
+/**
+ * Sanitize the font size.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $font_size (default: '')
+ * @param string $context (default: '')
+ * @uses absint()
+ *
+ * @return bool|string
+ */
+function lbs_sanitize_font_size( $font_size = '', $context = '' ) {
+
+	$font_size = absint( $font_size );
+	if ( ! in_array( $font_size, array( 12, 14, 16, 18 ) ) ) {
+		$font_size = false;
+	}
+
+	if ( in_array( $context, array( 'display', 'js' ) ) ) {
+		if ( ! empty( $font_size ) ) {
+			$font_size = $font_size . 'px';
+		}
+
+		if ( 'js' === $context ) {
+			$font_size = json_encode( $font_size );
+		}
+	}
+
+	return $font_size;
+}
+
+/**
+ * Sanitize the exclude classes/tags.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param array $content (default: false)
+ * @param string $context (default: '')
+ *
+ * @return string $content
+ */
+function lbs_sanitize_exclude_content( $content = array(), $context = '' ) {
+	if ( ! is_array( $content ) ) {
+		$content = explode( ',', $content );
+	}
+
+	if ( ! empty( $content ) ) {
+		$content = array_map( 'trim', $content );
+		$content = array_map( 'sanitize_html_class', $content );
+		$content = array_unique( array_filter( $content ) );
+	}
+
+	if ( 'js' === $context ) {
+		$content = json_encode( $content );
+	}
+
+	return $content;
+}
+
+/**
+ * Sanitize the Logos link color.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param string $color (default: 'light')
+ * @param string $context (default: '')
+ *
+ * @return string $color
+ */
+function lbs_sanitize_libronix_color( $color = 'light', $context = '' ) {
+
+	if ( ! in_array( $color, array( 'light', 'dark' ) ) ) {
+		$color = 'light';
+	}
+
+	if ( 'js' === $context ) {
+		$color = json_encode( $color );
+	}
+
+	return $color;
+}
+
+/**
+ * Sanitize the sharing options.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @param array $sharing (default: array())
+ * @param string $context (default: '')
+ * @uses lbs_default_sharing_args()
+ *
+ * @return array|string $sharing
+ */
+function lbs_sanitize_social_sharing( $sharing = array(), $context = '' ) {
+
+	$sharing  = (array) $sharing;
+	$defaults = lbs_default_sharing_args();
+
+	foreach ( $sharing as $key => $value ) {
+		if ( ! in_array( $value, $defaults ) ) {
+			unset( $sharing[ $key ] );
+		}
+	}
+
+	if ( 'js' === $context ) {
+		$sharing = json_encode( $sharing );
+	}
+
+	return $sharing;
+}
+
 /* DEFAULTS ******************************************************************/
 
 /**
