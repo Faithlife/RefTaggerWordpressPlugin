@@ -11,6 +11,19 @@ Author URI: http://www.logos.com/
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Output the current plugin version.
+ *
+ * @since 2.1.0
+ *
+ * @access public
+ *
+ * @return int Current database version
+ */
+function lbs_get_db_version() {
+	return 11;
+}
+
 function lbsFooter($unused)
 {
 	$bible_version = get_option('lbs_bible_version');
