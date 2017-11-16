@@ -324,17 +324,26 @@ function lbs_options_page()
       <th scope="row">Bible version:</th>
       <td><select name="lbs_bible_version">
           <option value="ASV" <?php if ($selected_version == 'ASV') { print 'selected="SELECTED"'; } ?>>ASV</option>
+          <option value="AV1873" <?php if ($selected_version == 'AV1873') { print 'selected="SELECTED"'; } ?>>AV 1873</option>
+          <option value="CSB" <?php if ($selected_version == 'CSB') { print 'selected="SELECTED"'; } ?>>CSB</option>
           <option value="DAR" <?php if ($selected_version == 'DAR') { print 'selected="SELECTED"'; } ?>>DARBY</option>
           <option value="DOUAYRHEIMS" <?php if ($selected_version == 'DOUAYRHEIMS') { print 'selected="SELECTED"'; } ?>>D-R</option>
           <option value="ESV" <?php if ($selected_version == 'ESV') { print 'selected="SELECTED"'; } ?>>ESV</option>
+          <option value="GNB" <?php if ($selected_version == 'GNB') { print 'selected="SELECTED"'; } ?>>GNB</option>
           <option value="GW" <?php if ($selected_version == 'GW') { print 'selected="SELECTED"'; } ?>>GW</option>
+          <option value="HCSB" <?php if ($selected_version == 'HCSB') { print 'selected="SELECTED"'; } ?>>HCSB</option>
           <option value="KJV" <?php if ($selected_version == 'KJV') { print 'selected="SELECTED"'; } ?>>KJV</option>
+          <option value="LEB" <?php if ($selected_version == 'LEB') { print 'selected="SELECTED"'; } ?>>LEB</option>
           <option value="MESSAGE" <?php if ($selected_version == 'MESSAGE') { print 'selected="SELECTED"'; } ?>>The Message</option>
           <option value="NASB" <?php if ($selected_version == 'NASB') { print 'selected="SELECTED"'; } ?>>NASB</option>
+          <option value="NCV" <?php if ($selected_version == 'NCV') { print 'selected="SELECTED"'; } ?>>NCV</option>
+          <option value="NET" <?php if ($selected_version == 'NET') { print 'selected="SELECTED"'; } ?>>NET</option>
           <option value="NIRV" <?php if ($selected_version == 'NIRV') { print 'selected="SELECTED"'; } ?>>NIRV</option>
           <option value="NIV" <?php if ($selected_version == 'NIV') { print 'selected="SELECTED"'; } ?>>NIV</option>
           <option value="NKJV" <?php if ($selected_version == 'NKJV') { print 'selected="SELECTED"'; } ?>>NKJV</option>
           <option value="NLT" <?php if ($selected_version == 'NLT') { print 'selected="SELECTED"'; } ?>>NLT</option>
+          <option value="NRSV" <?php if ($selected_version == 'NRSV') { print 'selected="SELECTED"'; } ?>>NRSV</option>
+          <option value="RSV" <?php if ($selected_version == 'RSV') { print 'selected="SELECTED"'; } ?>>RSV</option>
           <option value="RSVCE" <?php if ($selected_version == 'RSVCE') { print 'selected="SELECTED"'; } ?>>RSVCE</option>
           <option value="TNIV" <?php if ($selected_version == 'TNIV') { print 'selected="SELECTED"'; } ?>>TNIV</option>
           <option value="YLT" <?php if ($selected_version == 'YLT') { print 'selected="SELECTED"'; } ?>>YLT</option>
@@ -371,23 +380,29 @@ function lbs_options_page()
           <option value="AMP" <?php if ($selected_lib_version == 'AMP') { print 'selected="SELECTED"'; } ?>>AMP</option>
           <option value="ANIV" <?php if ($selected_lib_version == 'ANIV') { print 'selected="SELECTED"'; } ?>>ANIV</option>
           <option value="ASV" <?php if ($selected_lib_version == 'ASV') { print 'selected="SELECTED"'; } ?>>ASV</option>
+          <option value="AV1873" <?php if ($selected_lib_version == 'AV1873') { print 'selected="SELECTED"'; } ?>>AV 1873</option>
           <option value="CEV" <?php if ($selected_lib_version == 'CEV') { print 'selected="SELECTED"'; } ?>>CEV</option>
+          <option value="CSB" <?php if ($selected_lib_version == 'CSB') { print 'selected="SELECTED"'; } ?>>CSB</option>
           <option value="DARBY" <?php if ($selected_lib_version == 'DARBY') { print 'selected="SELECTED"'; } ?>>DARBY</option>
           <option value="DOUAYRHEIMS" <?php if ($selected_lib_version == 'DOUAYRHEIMS') { print 'selected="SELECTED"'; } ?>>D-R</option>
           <option value="ESV" <?php if ($selected_lib_version == 'ESV') { print 'selected="SELECTED"'; } ?>>ESV</option>
+          <option value="GNB" <?php if ($selected_lib_version == 'GNB') { print 'selected="SELECTED"'; } ?>>GNB</option>
           <option value="GODSWORD" <?php if ($selected_lib_version == 'GODSWORD') { print 'selected="SELECTED"'; } ?>>GW</option>
           <option value="HCSB" <?php if ($selected_lib_version == 'HCSB') { print 'selected="SELECTED"'; } ?>>HCSB</option>
           <option value="KJV" <?php if ($selected_lib_version == 'KJV') { print 'selected="SELECTED"'; } ?>>KJV</option>
           <option value="KJV1900" <?php if ($selected_lib_version == 'KJV1900') { print 'selected="SELECTED"'; } ?>>KJV1900</option>
+          <option value="LEB" <?php if ($selected_lib_version == 'LEB') { print 'selected="SELECTED"'; } ?>>LEB</option>
           <option value="MESSAGE" <?php if ($selected_lib_version == 'MESSAGE') { print 'selected="SELECTED"'; } ?>>The Message</option>
           <option value="NASB" <?php if ($selected_lib_version == 'NASB') { print 'selected="SELECTED"'; } ?>>NASB77</option>
           <option value="NASB95" <?php if ($selected_lib_version == 'NASB95') { print 'selected="SELECTED"'; } ?>>NASB95</option>
           <option value="NCV" <?php if ($selected_lib_version == 'NCV') { print 'selected="SELECTED"'; } ?>>NCV</option>
+          <option value="GS_NETBIBLE" <?php if ($selected_lib_version == 'GS_NETBIBLE') { print 'selected="SELECTED"'; } ?>>NET</option>
           <option value="NIRV" <?php if ($selected_lib_version == 'NIRV') { print 'selected="SELECTED"'; } ?>>NIRV</option>
           <option value="NIV" <?php if ($selected_lib_version == 'NIV') { print 'selected="SELECTED"'; } ?>>NIV</option>
           <option value="NKJV" <?php if ($selected_lib_version == 'NKJV') { print 'selected="SELECTED"'; } ?>>NKJV</option>
           <option value="NLT" <?php if ($selected_lib_version == 'NLT') { print 'selected="SELECTED"'; } ?>>NLT</option>
           <option value="NRSV" <?php if ($selected_lib_version == 'NRSV') { print 'selected="SELECTED"'; } ?>>NRSV</option>
+          <option value="RSV" <?php if ($selected_lib_version == 'RSV') { print 'selected="SELECTED"'; } ?>>RSV</option>
           <option value="RSVCE" <?php if ($selected_lib_version == 'RSVCE') { print 'selected="SELECTED"'; } ?>>RSVCE</option>
           <option value="TNIV" <?php if ($selected_lib_version == 'TNIV') { print 'selected="SELECTED"'; } ?>>TNIV</option>
           <option value="YLT" <?php if ($selected_lib_version == 'YLT') { print 'selected="SELECTED"'; } ?>>YLT</option>
