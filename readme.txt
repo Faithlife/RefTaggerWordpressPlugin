@@ -1,29 +1,31 @@
-﻿=== Reftagger ===
+﻿=== Faithlife Reftagger ===
 Contributors: Logos Bible Software
 Donate link: 
-Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, lbs, ldls
+Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
 Tested up to: 4.9
 Stable tag: trunk
 
-Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
+Faithlife Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
 == Description ==
 
-This plugin provides an easy way to use the Reftagger Bible reference tagging script from Logos Bible Software. It automatically modifies your site to run the script each time a page loads. The script identifies references to Bible verses and turns the references into links to the verse on Biblia.com. Hovering over a link will display a small tooltip containing the text of the reference, so users don't need to leave the page to view the verse. If desired, a small icon can also be inserted next to the reference. Clicking the icon will open the specified verse in Logos Bible Software, if available. The plugin provides a simple options page where you can customize the settings.
+Faithlife Reftagger automatically converts Bible references on your site into links so your site’s visitors can see Scripture just by hovering over the link. Reftagger modifies your site to run the tagging script each time a page loads, identifying Bible verse references and turning them into links to the verse on Biblia.com.
 
-Customizable preferences include: 
+Hovering over a link displays a tooltip with the text of the reference, so users don’t need to leave the page to see the verse. You can also insert a small icon next to the reference to open the verse in Logos Bible Software.
 
-* Which Bible version to link to.
-* Option to insert a Logos link after each reference.
-* Option to insert a Logos icon after any Logos links you already have on your site.
-* Choice of which icon to use if Logos links are enabled.
-* Option to enable or disable hover tooltips.
-* Option to work on existing Biblia.com and Ref.ly links.
-* Option to work on Bible references that use improper casing (e.g., jn 3:16 or JOHN 3:16).
-* Option to tag chapter references (e.g. Gen 1).
-* Option to prevent searching user comments for references.
-* Option to prevent searching specific HTML tags, such as bold, h1, ordered list, etc. 
+The plugin provides a simple options page where you can customize settings. Preferences include options to:
+
+* Specify a Bible version.
+* Insert a Logos link after each reference.
+* Insert a Logos icon after existing Logos links on your site.
+* Choose which icon to use if Logos links are enabled.
+* Enable or disable hover tooltips.
+* Work on existing Biblia.com and Ref.ly links.
+* Work on Bible references with improper casing (such as jn 3:16 or JOHN 3:16).
+* Tag chapter references (such as Gen. 1).
+* Prevent searching user comments for references.
+* Prevent searching specific HTML tags (such as bold, h1, ordered list).
 
 For more information, visit http://reftagger.com.
 
@@ -31,31 +33,31 @@ For more information, visit http://reftagger.com.
 
 Easy Install
 
-1. In your WordPress admin, go to 'Plugins' > 'Add New'.
-1. Search for 'Reftagger.'
-1. Click 'Install', then 'Install Now', and then 'Activate Plugin'.
+1. In your WordPress admin, go to Plugins > Add New.
+1. Search for Reftagger.
+1. Click Install, then Install Now, and then Activate Plugin.
 
 Manual Install
 
 1. Download the plugin.
 1. Unzip the plugin to your WordPress plugins directory `(/wp-content/plugins/)`.
-1. Activate 'Reftagger' through the 'Plugins' page in WordPress.
+1. Activate Reftagger through the Plugins page in WordPress.
 
 == Usage ==
 
-The plugin will begin working immediately when you activate it on the 'Plugins' page. If you wish to customize the preferences you can do so from 'Settings' > 'Reftagger'. Any changes will take effect immediately after clicking 'Save Changes'.
+The plugin works immediately when you activate it on the Plugins page. Customize preferences from Settings > Faithlife Reftagger. Any changes take effect immediately after clicking Save Changes.
 
 == Frequently Asked Questions ==
 
-= How do I know if it's working? =
+= How do I know if it’s working? =
 
 Any Bible references on your site will be displayed as links.
 
 = The plugin is not working =
 
-1. Check to make sure you have activated the plugin from the 'Plugins' page.
+1. Check to make sure you have activated the plugin from the Plugins page.
 1. Check to make sure you have JavaScript enabled in your web browser. 
-1. If you use a different font for your Bible references, such as italic text, go to the options page at 'Options' > 'Reference Tagger' and make sure the script is allowed to search that kind of text.
+1. If you use a different font for your Bible references, such as italic text, go to the settings page at Settings > Faithlife Reftagger and make sure the script is allowed to search that kind of text.
 
 = See http://reftagger.com for more FAQs =
 
