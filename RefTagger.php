@@ -1,11 +1,11 @@
 <?php
 /* 
 Plugin Name: RefTagger
-Plugin URI: http://www.logos.com/reftagger
+Plugin URI: https://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
 Author: Logos Bible Software
-Version: 2.1.1
-Author URI: http://www.logos.com/
+Version: 2.1.2
+Author URI: https://www.logos.com/
 */
 
 function lbsFooter($unused)
