@@ -3,7 +3,7 @@ Contributors: Logos Bible Software
 Donate link: 
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
-Tested up to: 4.9
+Tested up to: 5.2
 Stable tag: trunk
 
 Faithlife Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
