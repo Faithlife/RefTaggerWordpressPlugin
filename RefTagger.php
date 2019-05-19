@@ -117,7 +117,7 @@ function lbs_admin_options()
   <?php
 	
 	// If the user clicked submit, update the preferences
-	if($_REQUEST['submit'])
+	if(isset($_REQUEST['submit']))
 	{
 		lbs_update_options();
 	}
@@ -128,6 +128,11 @@ function lbs_admin_options()
 	?>
 </div>
 <?php
+}
+
+function lbs_is_checked($checkbox)
+{
+	return isset($_REQUEST[$checkbox]) && $_REQUEST[$checkbox] == '1' ? 1 : 0;
 }
 
 // Update any preferences the user has changed
@@ -156,34 +161,33 @@ function lbs_update_options()
 		$changed = true;
 	}
 	
-	
-	if($_REQUEST['lbs_libronix'] != $old_libronix)
+	if(lbs_is_checked('lbs_libronix') != $old_libronix)
 	{
-		update_option('lbs_libronix', $_REQUEST['lbs_libronix']);
+		update_option('lbs_libronix', lbs_is_checked('lbs_libronix'));
 		$changed = true;
 	}
 
-	if($_REQUEST['lbs_convert_hyperlinks'] != $old_convert)
+	if(lbs_is_checked('lbs_convert_hyperlinks') != $old_convert)
 	{
-		update_option('lbs_convert_hyperlinks', $_REQUEST['lbs_convert_hyperlinks']);
+		update_option('lbs_convert_hyperlinks', lbs_is_checked('lbs_convert_hyperlinks'));
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_case_insensitive'] != $old_case)
+	if(lbs_is_checked('lbs_case_insensitive') != $old_case)
 	{
-		update_option('lbs_case_insensitive', $_REQUEST['lbs_case_insensitive']);
+		update_option('lbs_case_insensitive', lbs_is_checked('lbs_case_insensitive'));
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_existing_libronix'] != $existing_libronix)
+	if(lbs_is_checked('lbs_existing_libronix') != $existing_libronix)
 	{
-		update_option('lbs_existing_libronix', $_REQUEST['lbs_existing_libronix']);
+		update_option('lbs_existing_libronix', lbs_is_checked('lbs_existing_libronix'));
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_tag_chapters'] != $old_tag_chapters)
+	if(lbs_is_checked('lbs_tag_chapters') != $old_tag_chapters)
 	{
-		update_option('lbs_tag_chapters', $_REQUEST['lbs_tag_chapters']);
+		update_option('lbs_tag_chapters', lbs_is_checked('lbs_tag_chapters'));
 		$changed = true;
 	}
 	
@@ -193,15 +197,15 @@ function lbs_update_options()
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_tooltips'] != $old_tooltips)
+	if(lbs_is_checked('lbs_tooltips') != $old_tooltips)
 	{
-		update_option('lbs_tooltips', $_REQUEST['lbs_tooltips']);
+		update_option('lbs_tooltips', lbs_is_checked('lbs_tooltips'));
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_search_comments'] != $old_comments)
+	if(lbs_is_checked('lbs_search_comments') != $old_comments)
 	{
-		update_option('lbs_search_comments', $_REQUEST['lbs_search_comments']);
+		update_option('lbs_search_comments', lbs_is_checked('lbs_search_comments'));
 		$changed = true;
 	}
 	
@@ -211,84 +215,84 @@ function lbs_update_options()
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_h1'] != $nosearch['h1'])
+	if(lbs_is_checked('lbs_nosearch_h1') != $nosearch['h1'])
 	{
-		$nosearch['h1'] = $_REQUEST['lbs_nosearch_h1'];
+		$nosearch['h1'] = lbs_is_checked('lbs_nosearch_h1');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_h2'] != $nosearch['h2'])
+	if(lbs_is_checked('lbs_nosearch_h2') != $nosearch['h2'])
 	{
-		$nosearch['h2'] = $_REQUEST['lbs_nosearch_h2'];
+		$nosearch['h2'] = lbs_is_checked('lbs_nosearch_h2');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	if($_REQUEST['lbs_nosearch_h3'] != $nosearch['h3'])
+	if(lbs_is_checked('lbs_nosearch_h3') != $nosearch['h3'])
 	{
-		$nosearch['h3'] = $_REQUEST['lbs_nosearch_h3'];
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	
-	if($_REQUEST['lbs_nosearch_h4'] != $nosearch['h4'])
-	{
-		$nosearch['h4'] = $_REQUEST['lbs_nosearch_h4'];
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	if($_REQUEST['lbs_nosearch_h5'] != $nosearch['h5'])
-	{
-		$nosearch['h5'] = $_REQUEST['lbs_nosearch_h5'];
+		$nosearch['h3'] = lbs_is_checked('lbs_nosearch_h3');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_h6'] != $nosearch['h6'])
+	if(lbs_is_checked('lbs_nosearch_h4') != $nosearch['h4'])
 	{
-		$nosearch['h6'] = $_REQUEST['lbs_nosearch_h6'];
+		$nosearch['h4'] = lbs_is_checked('lbs_nosearch_h4');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	if(lbs_is_checked('lbs_nosearch_h5') != $nosearch['h5'])
+	{
+		$nosearch['h5'] = lbs_is_checked('lbs_nosearch_h5');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_b'] != $nosearch['b'])
+	if(lbs_is_checked('lbs_nosearch_h6') != $nosearch['h6'])
 	{
-		$nosearch['b'] = $_REQUEST['lbs_nosearch_b'];
-		$nosearch['strong'] = $_REQUEST['lbs_nosearch_b'];
+		$nosearch['h6'] = lbs_is_checked('lbs_nosearch_h6');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_i'] != $nosearch['i'])
+	if(lbs_is_checked('lbs_nosearch_b') != $nosearch['b'])
 	{
-		$nosearch['i'] = $_REQUEST['lbs_nosearch_i'];
-		$nosearch['em'] = $_REQUEST['lbs_nosearch_i'];
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	if($_REQUEST['lbs_nosearch_u'] != $nosearch['u'])
-	{
-		$nosearch['u'] = $_REQUEST['lbs_nosearch_u'];
+		$nosearch['b'] = lbs_is_checked('lbs_nosearch_b');
+		$nosearch['strong'] = lbs_is_checked('lbs_nosearch_b');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_ol'] != $nosearch['ol'])
+	if(lbs_is_checked('lbs_nosearch_i') != $nosearch['i'])
 	{
-		$nosearch['ol'] = $_REQUEST['lbs_nosearch_ol'];
+		$nosearch['i'] = lbs_is_checked('lbs_nosearch_i');
+		$nosearch['em'] = lbs_is_checked('lbs_nosearch_i');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	if($_REQUEST['lbs_nosearch_ul'] != $nosearch['ul'])
+	if(lbs_is_checked('lbs_nosearch_u') != $nosearch['u'])
 	{
-		$nosearch['ul'] = $_REQUEST['lbs_nosearch_ul'];
+		$nosearch['u'] = lbs_is_checked('lbs_nosearch_u');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if($_REQUEST['lbs_nosearch_span'] != $nosearch['span'])
+	if(lbs_is_checked('lbs_nosearch_ol') != $nosearch['ol'])
 	{
-		$nosearch['span'] = $_REQUEST['lbs_nosearch_span'];
+		$nosearch['ol'] = lbs_is_checked('lbs_nosearch_ol');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	if(lbs_is_checked('lbs_nosearch_ul') != $nosearch['ul'])
+	{
+		$nosearch['ul'] = lbs_is_checked('lbs_nosearch_ul');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	
+	if(lbs_is_checked('lbs_nosearch_span') != $nosearch['span'])
+	{
+		$nosearch['span'] = lbs_is_checked('lbs_nosearch_span');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}	
