@@ -74,8 +74,8 @@ function lbsFooter($unused)
 function lbs_set_options()
 {
 	add_option('lbs_bible_version', 'ESV', 'Which Bible version to use');
-	add_option('lbs_libronix', 'false', 'Insert Logos Bible Software links');
-	add_option('lbs_existing_libronix', 'false', 'Insert Logos icon after existing Logos Bible Software links');
+	add_option('lbs_libronix', '0', 'Insert Logos Bible Software links');
+	add_option('lbs_existing_libronix', '0', 'Insert Logos icon after existing Logos Bible Software links');
 	add_option('lbs_libronix_color', 'dark', 'Color of Logos link icons');
 	add_option('lbs_tooltips', '1', 'Show a tooltip containing the verse text when the mouse hovers over a reference');
 	add_option('lbs_search_comments', '1', 'Whether or not to search user comments');
