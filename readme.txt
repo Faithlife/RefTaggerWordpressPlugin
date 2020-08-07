@@ -64,6 +64,7 @@ Any Bible references on your site will be displayed as links.
 == changelog ==
 2.4.0:
  * Upgrade to WordPress 5.5
+ * Use HTTPS for links.
 
 2.3.0:
  * Upgrade to WordPress 5.3

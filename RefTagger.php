@@ -372,7 +372,7 @@ function lbs_options_page()
     <tr style="vertical-align:middle">
       <th scope="row">Insert Logos Bible Software links:</th>
       <td><input name="lbs_libronix" value="1" id="lbs_libronix" type="checkbox" <?php if ($selected_libronix == '1') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix">Insert a small icon linking to the verse in <a href="http://www.logos.com/demo?wprtplugin" target="_blank">Logos Bible Software</a>.</label>
+        <label for="lbs_libronix">Insert a small icon linking to the verse in <a href="https://www.logos.com/demo?wprtplugin" target="_blank">Logos Bible Software</a>.</label>
         <br/>
         <input name="lbs_existing_libronix" value="1" id="lbs_existing_libronix" type="checkbox" <?php if ($selected_existing_libronix == '1') { print 'checked="CHECKED"'; } ?>>
         <label for="lbs_existing_libronix">Add a Logos icon to existing Logos Bible Software links.</label>
@@ -422,10 +422,10 @@ function lbs_options_page()
     <tr style="vertical-align:top">
       <th scope="row">Logos link icon:</th>
       <td><input name="lbs_libronix_color" id="lbs_libronix_color0" value="dark" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'dark') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color0"><img src="http://www.logos.com/images/Corporate/LibronixLink_dark.png"/> Dark (for sites with light backgrounds)</label>
+        <label for="lbs_libronix_color0"><img src="https://www.logos.com/images/Corporate/LibronixLink_dark.png"/> Dark (for sites with light backgrounds)</label>
         <br/>
         <input name="lbs_libronix_color" value="light" id="lbs_libronix_color1" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'light') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color1"><img src="http://www.logos.com/images/Corporate/LibronixLink_light.png"/> Light (for sites with dark backgrounds)</label>
+        <label for="lbs_libronix_color1"><img src="https://www.logos.com/images/Corporate/LibronixLink_light.png"/> Light (for sites with dark backgrounds)</label>
       </td>
     </tr>
     <tr style="vertical-align:top">
@@ -437,7 +437,7 @@ function lbs_options_page()
     <tr style="vertical-align:top">
       <th scope="row">Add tooltips to links:</th>
       <td><input name="lbs_convert_hyperlinks" value="1" id="lbs_convert_hyperlinks" type="checkbox" <?php if ($selected_convert_hyperlinks == '1') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_convert_hyperlinks">Add tooltips to existing <a href="http://biblia.com/" target="_blank">Biblia.com</a> and <a href="http://ref.ly/" target="_blank">Ref.ly</a> links.</label>
+        <label for="lbs_convert_hyperlinks">Add tooltips to existing <a href="https://biblia.com/" target="_blank">Biblia.com</a> and <a href="https://ref.ly/" target="_blank">Ref.ly</a> links.</label>
       </td>
     </tr>
     <tr style="vertical-align:top">
