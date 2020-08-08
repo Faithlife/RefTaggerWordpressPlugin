@@ -422,10 +422,10 @@ function lbs_options_page()
     <tr style="vertical-align:top">
       <th scope="row">Logos link icon:</th>
       <td><input name="lbs_libronix_color" id="lbs_libronix_color0" value="dark" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'dark') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color0"><img src="https://www.logos.com/images/Corporate/LibronixLink_dark.png"/> Dark (for sites with light backgrounds)</label>
+        <label for="lbs_libronix_color0"><img src="<?php echo plugins_url('images/LibronixLink_dark.png', __FILE__); ?>"/> Dark (for sites with light backgrounds)</label>
         <br/>
         <input name="lbs_libronix_color" value="light" id="lbs_libronix_color1" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'light') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color1"><img src="https://www.logos.com/images/Corporate/LibronixLink_light.png"/> Light (for sites with dark backgrounds)</label>
+        <label for="lbs_libronix_color1"><img src="<?php echo plugins_url('images/LibronixLink_light.png', __FILE__); ?>"/> Light (for sites with dark backgrounds)</label>
       </td>
     </tr>
     <tr style="vertical-align:top">
