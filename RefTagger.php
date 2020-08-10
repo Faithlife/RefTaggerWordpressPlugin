@@ -132,7 +132,7 @@ function lbs_admin_options()
 
 function array_get_option_value($arr, $index)
 {
-	return isset($arr[$index]) ? $arr[$index] : 0;
+	return isset($arr[$index]) ? sanitize_text_field($arr[$index]) : 0;
 }
 
 // Update any preferences the user has changed
