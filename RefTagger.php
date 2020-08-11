@@ -8,7 +8,7 @@ Version: 2.4.1
 Author URI: https://www.logos.com/
 */
 
-function reftaggerFooter($unused)
+function reftagger_footer($unused)
 {
 	$bible_version = get_option('lbs_bible_version');
 	$libronix = get_option('lbs_libronix');
@@ -528,6 +528,6 @@ register_activation_hook(__FILE__, 'reftagger_set_options');
 register_deactivation_hook(__FILE__, 'reftagger_unset_options');
 
 // Run when the footer is generated
-add_action('wp_footer', 'reftaggerFooter');
+add_action('wp_footer', 'reftagger_footer');
 
 ?>
