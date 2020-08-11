@@ -71,7 +71,7 @@ function lbsFooter($unused)
 }
 
 // Register the user preferences when the plugin is enabled
-function lbs_set_options()
+function reftagger_set_options()
 {
 	add_option('lbs_bible_version', 'ESV', 'Which Bible version to use');
 	add_option('lbs_libronix', '0', 'Insert Logos Bible Software links');
@@ -91,7 +91,7 @@ function lbs_set_options()
 }
 
 // Remove the user preferences when the plugin is disabled
-function lbs_unset_options()
+function reftagger_unset_options()
 {
 	delete_option('lbs_bible_version');
 	delete_option('lbs_libronix');
@@ -108,7 +108,7 @@ function lbs_unset_options()
 }
 
 // The options page
-function lbs_admin_options()
+function reftagger_admin_options()
 {
 	?>
 
@@ -117,27 +117,32 @@ function lbs_admin_options()
   <?php
 	
 	// If the user clicked submit, update the preferences
-	if(array_get_option_value($_REQUEST, 'submit'))
+	if(reftagger_get_option_value($_REQUEST, 'submit'))
 	{
-		lbs_update_options();
+		reftagger_update_options();
 	}
 	
 	// Print the options page
-	lbs_options_page();
+	reftagger_options_page();
 	
 	?>
 </div>
 <?php
 }
 
-function array_get_option_value($arr, $index)
+function reftagger_get_option_value($option_object, $index)
 {
-	return isset($arr[$index]) ? $arr[$index] : 0;
+	return isset($option_object[$index]) ? sanitize_text_field($option_object[$index]) : 0;
 }
 
 // Update any preferences the user has changed
-function lbs_update_options()
+function reftagger_update_options()
 {
+	if (!check_admin_referer('reftagger_submit_options') || !current_user_can('manage_options'))
+	{
+		die("Authorization failed.");
+	}
+
 	$changed = false;
 	$old_libronix = get_option('lbs_libronix');
 	$existing_libronix = get_option('lbs_existing_libronix');
@@ -149,151 +154,151 @@ function lbs_update_options()
 	$old_case = get_option('lbs_case_insensitive');
 	$old_tag_chapters = get_option('lbs_tag_chapters');
 
-	if(array_get_option_value($_REQUEST, 'lbs_bible_version'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_bible_version'))
 	{
-		update_option('lbs_bible_version', array_get_option_value($_REQUEST, 'lbs_bible_version'));
+		update_option('lbs_bible_version', reftagger_get_option_value($_REQUEST, 'lbs_bible_version'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_libronix_bible_version'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_libronix_bible_version'))
 	{
-		update_option('lbs_libronix_bible_version', array_get_option_value($_REQUEST, 'lbs_libronix_bible_version'));
+		update_option('lbs_libronix_bible_version', reftagger_get_option_value($_REQUEST, 'lbs_libronix_bible_version'));
 		$changed = true;
 	}
 	
 	
-	if(array_get_option_value($_REQUEST, 'lbs_libronix') != $old_libronix)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_libronix') != $old_libronix)
 	{
-		update_option('lbs_libronix', array_get_option_value($_REQUEST, 'lbs_libronix'));
+		update_option('lbs_libronix', reftagger_get_option_value($_REQUEST, 'lbs_libronix'));
 		$changed = true;
 	}
 
-	if(array_get_option_value($_REQUEST, 'lbs_convert_hyperlinks') != $old_convert)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_convert_hyperlinks') != $old_convert)
 	{
-		update_option('lbs_convert_hyperlinks', array_get_option_value($_REQUEST, 'lbs_convert_hyperlinks'));
+		update_option('lbs_convert_hyperlinks', reftagger_get_option_value($_REQUEST, 'lbs_convert_hyperlinks'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_case_insensitive') != $old_case)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_case_insensitive') != $old_case)
 	{
-		update_option('lbs_case_insensitive', array_get_option_value($_REQUEST, 'lbs_case_insensitive'));
+		update_option('lbs_case_insensitive', reftagger_get_option_value($_REQUEST, 'lbs_case_insensitive'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_existing_libronix') != $existing_libronix)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_existing_libronix') != $existing_libronix)
 	{
-		update_option('lbs_existing_libronix', array_get_option_value($_REQUEST, 'lbs_existing_libronix'));
+		update_option('lbs_existing_libronix', reftagger_get_option_value($_REQUEST, 'lbs_existing_libronix'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_tag_chapters') != $old_tag_chapters)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_tag_chapters') != $old_tag_chapters)
 	{
-		update_option('lbs_tag_chapters', array_get_option_value($_REQUEST, 'lbs_tag_chapters'));
+		update_option('lbs_tag_chapters', reftagger_get_option_value($_REQUEST, 'lbs_tag_chapters'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_libronix_color'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_libronix_color'))
 	{
-		update_option('lbs_libronix_color', array_get_option_value($_REQUEST, 'lbs_libronix_color'));
+		update_option('lbs_libronix_color', reftagger_get_option_value($_REQUEST, 'lbs_libronix_color'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_tooltips') != $old_tooltips)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_tooltips') != $old_tooltips)
 	{
-		update_option('lbs_tooltips', array_get_option_value($_REQUEST, 'lbs_tooltips'));
+		update_option('lbs_tooltips', reftagger_get_option_value($_REQUEST, 'lbs_tooltips'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_search_comments') != $old_comments)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_search_comments') != $old_comments)
 	{
-		update_option('lbs_search_comments', array_get_option_value($_REQUEST, 'lbs_search_comments'));
+		update_option('lbs_search_comments', reftagger_get_option_value($_REQUEST, 'lbs_search_comments'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_new_window') != $window)
+	if(reftagger_get_option_value($_REQUEST, 'lbs_new_window') != $window)
 	{
-		update_option('lbs_new_window', array_get_option_value($_REQUEST, 'lbs_new_window'));
+		update_option('lbs_new_window', reftagger_get_option_value($_REQUEST, 'lbs_new_window'));
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h1') != array_get_option_value($nosearch, 'h1'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h1') != reftagger_get_option_value($nosearch, 'h1'))
 	{
-		$nosearch['h1'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h1');
+		$nosearch['h1'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h1');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h2') != array_get_option_value($nosearch, 'h2'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h2') != reftagger_get_option_value($nosearch, 'h2'))
 	{
-		$nosearch['h2'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h2');
+		$nosearch['h2'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h2');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h3') != array_get_option_value($nosearch, 'h3'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h3') != reftagger_get_option_value($nosearch, 'h3'))
 	{
-		$nosearch['h3'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h3');
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h4') != array_get_option_value($nosearch, 'h4'))
-	{
-		$nosearch['h4'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h4');
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h5') != array_get_option_value($nosearch, 'h5'))
-	{
-		$nosearch['h5'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h5');
+		$nosearch['h3'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h3');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_h6') != array_get_option_value($nosearch, 'h6'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h4') != reftagger_get_option_value($nosearch, 'h4'))
 	{
-		$nosearch['h6'] = array_get_option_value($_REQUEST, 'lbs_nosearch_h6');
+		$nosearch['h4'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h4');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h5') != reftagger_get_option_value($nosearch, 'h5'))
+	{
+		$nosearch['h5'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h5');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_b') != array_get_option_value($nosearch, 'b'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h6') != reftagger_get_option_value($nosearch, 'h6'))
 	{
-		$nosearch['b'] = array_get_option_value($_REQUEST, 'lbs_nosearch_b');
-		$nosearch['strong'] = array_get_option_value($_REQUEST, 'lbs_nosearch_b');
+		$nosearch['h6'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_h6');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_i') != array_get_option_value($nosearch, 'i'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_b') != reftagger_get_option_value($nosearch, 'b'))
 	{
-		$nosearch['i'] = array_get_option_value($_REQUEST, 'lbs_nosearch_i');
-		$nosearch['em'] = array_get_option_value($_REQUEST, 'lbs_nosearch_i');
-		update_option('lbs_nosearch', $nosearch);
-		$changed = true;
-	}
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_u') != array_get_option_value($nosearch, 'u'))
-	{
-		$nosearch['u'] = array_get_option_value($_REQUEST, 'lbs_nosearch_u');
+		$nosearch['b'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_b');
+		$nosearch['strong'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_b');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_ol') != array_get_option_value($nosearch, 'ol'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_i') != reftagger_get_option_value($nosearch, 'i'))
 	{
-		$nosearch['ol'] = array_get_option_value($_REQUEST, 'lbs_nosearch_ol');
+		$nosearch['i'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_i');
+		$nosearch['em'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_i');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_ul') != array_get_option_value($nosearch, 'ul'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_u') != reftagger_get_option_value($nosearch, 'u'))
 	{
-		$nosearch['ul'] = array_get_option_value($_REQUEST, 'lbs_nosearch_ul');
+		$nosearch['u'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_u');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}
 	
-	if(array_get_option_value($_REQUEST, 'lbs_nosearch_span') != array_get_option_value($nosearch, 'span'))
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_ol') != reftagger_get_option_value($nosearch, 'ol'))
 	{
-		$nosearch['span'] = array_get_option_value($_REQUEST, 'lbs_nosearch_span');
+		$nosearch['ol'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_ol');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_ul') != reftagger_get_option_value($nosearch, 'ul'))
+	{
+		$nosearch['ul'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_ul');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+	
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_span') != reftagger_get_option_value($nosearch, 'span'))
+	{
+		$nosearch['span'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_span');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
 	}	
@@ -308,7 +313,7 @@ function lbs_update_options()
 }
 
 // Print the options page
-function lbs_options_page()
+function reftagger_options_page()
 {
 	$selected_version = get_option('lbs_bible_version');
 	$selected_libronix = get_option('lbs_libronix');
@@ -324,6 +329,7 @@ function lbs_options_page()
 	$selected_tag_chapters = get_option('lbs_tag_chapters');
 	?>
 <form method="post">
+  <?php wp_nonce_field('reftagger_submit_options'); ?>
   <table class="form-table">
     <tr style="vertical-align:top">
       <th scope="row">Bible version:</th>
@@ -422,10 +428,10 @@ function lbs_options_page()
     <tr style="vertical-align:top">
       <th scope="row">Logos link icon:</th>
       <td><input name="lbs_libronix_color" id="lbs_libronix_color0" value="dark" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'dark') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color0"><img src="https://www.logos.com/images/Corporate/LibronixLink_dark.png"/> Dark (for sites with light backgrounds)</label>
+        <label for="lbs_libronix_color0"><img src="<?php echo plugins_url('images/LibronixLink_dark.png', __FILE__); ?>"/> Dark (for sites with light backgrounds)</label>
         <br/>
         <input name="lbs_libronix_color" value="light" id="lbs_libronix_color1" style="vertical-align: middle" type="radio" <?php if ($selected_color == 'light') { print 'checked="CHECKED"'; } ?>>
-        <label for="lbs_libronix_color1"><img src="https://www.logos.com/images/Corporate/LibronixLink_light.png"/> Light (for sites with dark backgrounds)</label>
+        <label for="lbs_libronix_color1"><img src="<?php echo plugins_url('images/LibronixLink_light.png', __FILE__); ?>"/> Light (for sites with dark backgrounds)</label>
       </td>
     </tr>
     <tr style="vertical-align:top">
@@ -462,40 +468,40 @@ function lbs_options_page()
       <table>
         <tr>Do not search the following HTML tags:</tr>
         <tr>
-          <td><input name="lbs_nosearch_b" value="1" id="lbs_nosearch_b" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'b') == '1') { print 'checked="CHECKED"'; } ?>>
+          <td><input name="lbs_nosearch_b" value="1" id="lbs_nosearch_b" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'b') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_b">Bold</label>
             <br/>
-            <input name="lbs_nosearch_i" value="1" id="lbs_nosearch_i" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'i') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_i" value="1" id="lbs_nosearch_i" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'i') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_i">Italic</label>
             <br/>
-            <input name="lbs_nosearch_u" value="1" id="lbs_nosearch_u" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'u') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_u" value="1" id="lbs_nosearch_u" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'u') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_u">Underline</label>
             <br/>
-            <input name="lbs_nosearch_ol" value="1" id="lbs_nosearch_ol" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'ol') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_ol" value="1" id="lbs_nosearch_ol" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'ol') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_ol">Ordered list</label>
             <br/>
-            <input name="lbs_nosearch_ul" value="1" id="lbs_nosearch_ul" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'ul') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_ul" value="1" id="lbs_nosearch_ul" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'ul') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_ul">Unordered list</label>
             <br/>
-            <input name="lbs_nosearch_span" value="1" id="lbs_nosearch_span" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'span') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_span" value="1" id="lbs_nosearch_span" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'span') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_span">Span</label>
           </td>
-          <td><input name="lbs_nosearch_h1" value="1" id="lbs_nosearch_h1" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h1') == '1') { print 'checked="CHECKED"'; } ?>>
+          <td><input name="lbs_nosearch_h1" value="1" id="lbs_nosearch_h1" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h1') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h1">Header 1</label>
             <br/>
-            <input name="lbs_nosearch_h2" value="1" id="lbs_nosearch_h2" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h2') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_h2" value="1" id="lbs_nosearch_h2" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h2') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h2">Header 2</label>
             <br/>
-            <input name="lbs_nosearch_h3" value="1" id="lbs_nosearch_h3" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h3') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_h3" value="1" id="lbs_nosearch_h3" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h3') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h3">Header 3</label>
             <br/>
-            <input name="lbs_nosearch_h4" value="1" id="lbs_nosearch_h4" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h4') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_h4" value="1" id="lbs_nosearch_h4" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h4') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h4">Header 4</label>
             <br/>
-            <input name="lbs_nosearch_h5" value="1" id="lbs_nosearch_h5" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h5') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_h5" value="1" id="lbs_nosearch_h5" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h5') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h5">Header 5</label>
             <br/>
-            <input name="lbs_nosearch_h6" value="1" id="lbs_nosearch_h6" type="checkbox" <?php if (array_get_option_value($selected_nosearch, 'h6') == '1') { print 'checked="CHECKED"'; } ?>>
+            <input name="lbs_nosearch_h6" value="1" id="lbs_nosearch_h6" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h6') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h6">Header 6</label>
           </td>
         </tr>
@@ -511,15 +517,15 @@ function lbs_options_page()
 }
 
 // Add the options page to the menu
-function lbs_add_menu()
+function reftagger_add_menu()
 {
-	add_options_page('Faithlife Reftagger', 'Faithlife Reftagger', 'manage_options', __FILE__, 'lbs_admin_options');
+	add_options_page('Faithlife Reftagger', 'Faithlife Reftagger', 'manage_options', __FILE__, 'reftagger_admin_options');
 }
 
-add_action('admin_menu', 'lbs_add_menu');
+add_action('admin_menu', 'reftagger_add_menu');
 
-register_activation_hook(__FILE__, 'lbs_set_options');
-register_deactivation_hook(__FILE__, 'lbs_unset_options');
+register_activation_hook(__FILE__, 'reftagger_set_options');
+register_deactivation_hook(__FILE__, 'reftagger_unset_options');
 
 // Run when the footer is generated
 add_action('wp_footer', 'lbsFooter');

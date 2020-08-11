@@ -4,13 +4,13 @@ Donate link:
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
 Tested up to: 5.5
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 
 Faithlife Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
 == Description ==
 
-Faithlife Reftagger automatically converts Bible references on your site into links so your site’s visitors can see Scripture just by hovering over the link. Reftagger modifies your site to run the tagging script each time a page loads, identifying Bible verse references and turning them into links to the verse on Biblia.com.
+Faithlife Reftagger is a service which automatically converts Bible references on your site into links so your site’s visitors can see Scripture just by hovering over the link. Reftagger modifies your site to run the tagging script each time a page loads, identifying Bible verse references and turning them into links to the verse on Biblia.com.
 
 Hovering over a link displays a tooltip with the text of the reference, so users don’t need to leave the page to see the verse. You can also insert a small icon next to the reference to open the verse in Logos Bible Software.
 
@@ -27,7 +27,9 @@ The plugin provides a simple options page where you can customize settings. Pref
 * Prevent searching user comments for references.
 * Prevent searching specific HTML tags (such as bold, h1, ordered list).
 
-For more information, visit http://reftagger.com.
+This plugin relies on the Faithlife Reftagger API service (api.reftagger.com) to make this tagging possible. By using this plugin and corresponding service, you are accept Faithlife Reftagger API's Privacy Policy (https://faithlife.com/products/reftagger/privacy) and Terms of Use (https://faithlife.com/terms).
+
+For more information, visit https://faithlife.com/products/reftagger.
 
 == Installation ==
 
@@ -59,9 +61,14 @@ Any Bible references on your site will be displayed as links.
 1. Check to make sure you have JavaScript enabled in your web browser. 
 1. If you use a different font for your Bible references, such as italic text, go to the settings page at Settings > Faithlife Reftagger and make sure the script is allowed to search that kind of text.
 
-= See http://reftagger.com for more FAQs =
+= See https://faithlife.com/products/reftagger/faq for more FAQs =
 
 == changelog ==
+2.4.1:
+ * Misc. security improvements.
+ * Moved externally hosted images to the plugin.
+ * Update readme with Reftagger API service documentation.
+
 2.4.0:
  * Upgrade to WordPress 5.5
  * Use HTTPS for links.
@@ -80,4 +87,4 @@ Any Bible references on your site will be displayed as links.
 
 == screenshots ==
 
-Please see http://reftagger.com for screenshots.
+Please see https://faithlife.com/products/reftagger for screenshots.
