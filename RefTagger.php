@@ -138,6 +138,11 @@ function reftagger_get_option_value($option_object, $index)
 // Update any preferences the user has changed
 function reftagger_update_options()
 {
+	if (!check_admin_referer('reftagger_submit_options') || !current_user_can('manage_options'))
+	{
+		die("Authorization failed.");
+	}
+
 	$changed = false;
 	$old_libronix = get_option('lbs_libronix');
 	$existing_libronix = get_option('lbs_existing_libronix');
@@ -324,6 +329,7 @@ function reftagger_options_page()
 	$selected_tag_chapters = get_option('lbs_tag_chapters');
 	?>
 <form method="post">
+  <?php wp_nonce_field('reftagger_submit_options'); ?>
   <table class="form-table">
     <tr style="vertical-align:top">
       <th scope="row">Bible version:</th>
