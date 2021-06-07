@@ -4,7 +4,7 @@ Donate link:
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
 Tested up to: 5.5
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 
 Faithlife Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
@@ -64,6 +64,9 @@ Any Bible references on your site will be displayed as links.
 = See https://faithlife.com/products/reftagger/faq for more FAQs =
 
 == changelog ==
+2.4.2:
+ * Replace protocol-relative url with explicit https.
+
 2.4.1:
  * Misc. security improvements.
  * Moved externally hosted images to the plugin.
