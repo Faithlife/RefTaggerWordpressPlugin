@@ -63,7 +63,7 @@ function reftagger_footer($unused)
 
 	(function(d, t) {
 		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-		g.src = '//api.reftagger.com/v2/reftagger<?php echo $is_spanish ? '.es' : ''?>.js';
+		g.src = 'https://api.reftagger.com/v2/reftagger<?php echo $is_spanish ? '.es' : ''?>.js';
 		s.parentNode.insertBefore(g, s);
 	}(document, 'script'));
 </script>
