@@ -4,7 +4,7 @@ Plugin Name: RefTagger
 Plugin URI: https://www.logos.com/reftagger
 Description: Transform Bible references into links to the full text of the verse.
 Author: Logos Bible Software
-Version: 2.4.1
+Version: 2.4.2
 Author URI: https://www.logos.com/
 */
 
