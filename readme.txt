@@ -66,6 +66,7 @@ Any Bible references on your site will be displayed as links.
 == changelog ==
 2.4.5:
  * Update settings text
+ * Rename plugin to Logos Reftagger
 
 2.4.4:
  * Upgrade to WordPress 5.8
