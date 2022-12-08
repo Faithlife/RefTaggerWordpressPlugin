@@ -1,4 +1,4 @@
-﻿=== Faithlife Reftagger ===
+=== Faithlife Reftagger ===
 Contributors: Logos Bible Software
 Donate link: 
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
@@ -64,6 +64,9 @@ Any Bible references on your site will be displayed as links.
 = See https://faithlife.com/products/reftagger/faq for more FAQs =
 
 == changelog ==
+2.4.5:
+ * Update settings text
+
 2.4.4:
  * Upgrade to WordPress 5.8
 
