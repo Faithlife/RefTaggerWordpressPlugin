@@ -3,8 +3,8 @@ Contributors: Logos Bible Software
 Donate link: 
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
-Tested up to: 5.8
-Stable tag: 2.4.5
+Tested up to: 6.4
+Stable tag: 2.4.6
 
 Logos Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
@@ -27,9 +27,9 @@ The plugin provides a simple options page where you can customize settings. Pref
 * Prevent searching user comments for references.
 * Prevent searching specific HTML tags (such as bold, h1, ordered list).
 
-This plugin relies on the Logos Reftagger API service (api.reftagger.com) to make this tagging possible. By using this plugin and corresponding service, you are accept Logos Reftagger API's Privacy Policy (https://faithlife.com/products/reftagger/privacy) and Terms of Use (https://faithlife.com/terms).
+This plugin relies on the Logos Reftagger API service (api.reftagger.com) to make this tagging possible. By using this plugin and corresponding service, you are accept Logos Reftagger API's Privacy Policy (https://www.logos.com/privacy) and Terms of Use (https://www.logos.com/terms).
 
-For more information, visit https://faithlife.com/products/reftagger.
+For more information, visit https://www.logos.com/reftagger.
 
 == Installation ==
 
@@ -61,9 +61,13 @@ Any Bible references on your site will be displayed as links.
 1. Check to make sure you have JavaScript enabled in your web browser. 
 1. If you use a different font for your Bible references, such as italic text, go to the settings page at Settings > Logos Reftagger and make sure the script is allowed to search that kind of text.
 
-= See https://faithlife.com/products/reftagger/faq for more FAQs =
+= See https://www.logos.com/faq#reftagger for more FAQs =
 
 == changelog ==
+2.5.6
+* Upgrade to WordPress 6.4.2
+* Update URLs in documentation
+
 2.4.5:
  * Update settings text
  * Rename plugin to Logos Reftagger
@@ -100,4 +104,4 @@ Any Bible references on your site will be displayed as links.
 
 == screenshots ==
 
-Please see https://faithlife.com/products/reftagger for screenshots.
+Please see https://www.logos.com/reftagger for screenshots.
