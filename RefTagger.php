@@ -301,7 +301,15 @@ function reftagger_update_options()
 		$nosearch['span'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_span');
 		update_option('lbs_nosearch', $nosearch);
 		$changed = true;
-	}	
+	}
+	
+	if(reftagger_get_option_value($_REQUEST, 'lbs_nosearch_blockquote') != reftagger_get_option_value($nosearch, 'blockquote'))
+	{
+		$nosearch['blockquote'] = reftagger_get_option_value($_REQUEST, 'lbs_nosearch_blockquote');
+		update_option('lbs_nosearch', $nosearch);
+		$changed = true;
+	}
+
 	if($changed)
 	{
 		?>
@@ -485,6 +493,9 @@ function reftagger_options_page()
             <br/>
             <input name="lbs_nosearch_span" value="1" id="lbs_nosearch_span" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'span') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_span">Span</label>
+            <br/>
+            <input name="lbs_nosearch_blockquote" value="1" id="lbs_nosearch_blockquote" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'blockquote') == '1') { print 'checked="CHECKED"'; } ?>>
+            <label for="lbs_nosearch_blockquote">Blockquote</label>
           </td>
           <td><input name="lbs_nosearch_h1" value="1" id="lbs_nosearch_h1" type="checkbox" <?php if (reftagger_get_option_value($selected_nosearch, 'h1') == '1') { print 'checked="CHECKED"'; } ?>>
             <label for="lbs_nosearch_h1">Header 1</label>
