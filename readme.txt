@@ -3,8 +3,8 @@ Contributors: Logos Bible Software
 Donate link: 
 Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
 Requires at least: 2.3
-Tested up to: 6.4
-Stable tag: 2.4.6
+Tested up to: 6.9
+Stable tag: 2.4.7
 
 Logos Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
@@ -64,7 +64,10 @@ Any Bible references on your site will be displayed as links.
 = See https://www.logos.com/faq#reftagger for more FAQs =
 
 == changelog ==
-2.5.6
+2.4.7
+* Upgrade to WordPress 6.9
+
+2.4.6
 * Upgrade to WordPress 6.4.2
 * Update URLs in documentation
 
