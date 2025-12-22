@@ -1,10 +1,11 @@
 ﻿=== Logos Reftagger ===
-Contributors: Logos Bible Software
+Contributors: logos
 Donate link: 
-Tags: reftagger, reftagging, bible, verse, verses, reference, references, scripture, tagging, tagger, libronix, logos, faithlife, lbs, ldls
+Tags: reftagger, bible, verse, scripture, logos
 Requires at least: 2.3
 Tested up to: 6.9
 Stable tag: 2.4.7
+Requires PHP: 7.0
 License: MIT
 License URI: https://github.com/Faithlife/RefTaggerWordpressPlugin/blob/master/LICENSE
 
@@ -65,48 +66,49 @@ Any Bible references on your site will be displayed as links.
 
 = See https://www.logos.com/faq#reftagger for more FAQs =
 
-== changelog ==
-2.4.7
+== Changelog ==
+
+= 2.4.7 =
 * Upgrade to WordPress 6.9
 
-2.4.6
+= 2.4.6 =
 * Upgrade to WordPress 6.4.2
 * Update URLs in documentation
 
-2.4.5:
+= 2.4.5 =
  * Update settings text
  * Rename plugin to Logos Reftagger
 
-2.4.4:
+= 2.4.4 =
  * Upgrade to WordPress 5.8
 
-2.4.3:
+= 2.4.3 =
  * Upgrade to WordPress 5.6
 
-2.4.2:
+= 2.4.2 =
  * Replace protocol-relative url with explicit https.
 
-2.4.1:
+= 2.4.1 =
  * Misc. security improvements.
  * Moved externally hosted images to the plugin.
  * Update readme with Reftagger API service documentation.
 
-2.4.0:
+= 2.4.0 =
  * Upgrade to WordPress 5.5
  * Use HTTPS for links.
 
-2.3.0:
+= 2.3.0 =
  * Upgrade to WordPress 5.3
  * Fix undefined index errors when running in debug mode.
  * Fix Logos Bible Software link icon being enabled by default.
 
-2.2.1:
+= 2.2.1 =
  * Fix stable tag
 
-2.2.0:
+= 2.2.0 =
  * Upgrade to WordPress 5.2
  * Fix bug in saving 'Links open in' setting persisting on 'New window'
 
-== screenshots ==
+== Screenshots ==
 
 Please see https://www.logos.com/reftagger for screenshots.
