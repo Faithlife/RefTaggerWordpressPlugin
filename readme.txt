@@ -5,6 +5,8 @@ Tags: reftagger, reftagging, bible, verse, verses, reference, references, script
 Requires at least: 2.3
 Tested up to: 6.9
 Stable tag: 2.4.7
+License: MIT
+License URI: https://github.com/Faithlife/RefTaggerWordpressPlugin/blob/master/LICENSE
 
 Logos Reftagger turns Bible references into links to the verse on Biblia.com and adds tooltips with the text of the verse.
 
